@@ -1,0 +1,60 @@
+{
+  "head": {
+    "title": "New Candy Wrapper project",
+    "link": [
+      {
+        "rel": "shortcut icon",
+        "href": "favicon.ico",
+        "type": "image/x-icon"
+      },
+      {
+        "rel": "stylesheet",
+        "href": "https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap",
+        "type": "text/css"
+      }
+    ],
+    "meta": [
+      {
+        "name": "viewport",
+        "content": "width=device-width, initial-scale=1.0"
+      },
+      {
+        "charset": "UTF-8"
+      },
+      {
+        "name": "description",
+        "content": "New Candy Wrapper project."
+      },
+      {
+        "name": "keywords",
+        "content": ""
+      }
+    ]
+  },
+  "fonts": [],
+  "element": "body",
+  "style": "background-color: #FAFAFA;",
+  "children": [
+    {
+      "element": "nav",
+      "style": "display: flex; align-items: center; justify-content: space-between; max-width: 1110px; width: 100%; margin-inline: auto; box-sizing: border-box; padding-top: 64px;",
+      "children": [
+        {
+          "element": "img",
+          "attributes": {
+            "src": "static/images/logo.svg"
+          }
+        },
+        {
+          "element": "ul",
+          "style": "display: flex; margin: 0; padding: 0; list-style: none; gap: 42px;",
+          "blueprint": {
+            "count": "3",
+            "element": "li",
+            "text": "xyz"
+          }
+        }
+      ]
+    }
+  ]
+}
