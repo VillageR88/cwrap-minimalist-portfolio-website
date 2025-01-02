@@ -1,1 +1,33 @@
-[]
+[
+    {
+        "element": "nav",
+        "name": "navbar",
+        "style": "display: flex; align-items: center; justify-content: space-between; max-width: 1110px; width: 100%; margin-inline: auto; box-sizing: border-box; padding-top: 64px;",
+        "children": [
+            {
+                "element": "img",
+                "attributes": {
+                    "src": "static/images/logo.svg"
+                }
+            },
+            {
+                "element": "ul",
+                "style": "font-family: Public Sans, serif; font-size: 12px; letter-spacing: 2px; display: flex; margin: 0; padding: 0; list-style: none; gap: 42px;",
+                "blueprint": {
+                    "count": "3",
+                    "element": "li",
+                    "children": [
+                        {
+                            "element": "a",
+                            "style": "color: cwrapArray[cwrapProperty[color1=#33323D],cwrapProperty[color2=#33323D],cwrapProperty[color3=#33323D]]; text-decoration: none;",
+                            "text": "cwrapArray[HOME,PORTFOLIO,CONTACT ME]",
+                            "attributes": {
+                                "href": "#"
+                            }
+                        }
+                    ]
+                }
+            }
+        ]
+    }
+]

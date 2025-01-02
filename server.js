@@ -23,7 +23,7 @@ const CWRAP_DIR = process.env.DEV
 
 // Create and configure the livereload server
 const liveReloadServer = livereload.createServer({
-  exts: ["html", "css", "js", "py", "exe"],
+  exts: ["html", "css", "js", "py", "exe", "json"],
 });
 liveReloadServer.watch(CWRAP_DIR);
 
@@ -240,19 +240,19 @@ app.post("/api/create-initial-settings", (req, res) => {
 
 // API endpoint to list directory contents within the current path
 app.get("/api/list-directory", (req, res) => {
-    const currentPath = req.query.path || "";
-    const dirPath = path.join(ROOT_DIR, "routes", currentPath);
-    fs.readdir(dirPath, { withFileTypes: true }, (err, entries) => {
-        if (err) {
-            console.error("Error reading directory:", err);
-            res.status(500).json({ success: false, error: err.message });
-        } else {
-            const directories = entries
-                .filter(entry => entry.isDirectory())
-                .map(entry => entry.name);
-            res.status(200).json(directories);
-        }
-    });
+  const currentPath = req.query.path || "";
+  const dirPath = path.join(ROOT_DIR, "routes", currentPath);
+  fs.readdir(dirPath, { withFileTypes: true }, (err, entries) => {
+    if (err) {
+      console.error("Error reading directory:", err);
+      res.status(500).json({ success: false, error: err.message });
+    } else {
+      const directories = entries
+        .filter((entry) => entry.isDirectory())
+        .map((entry) => entry.name);
+      res.status(200).json(directories);
+    }
+  });
 });
 
 // Middleware to serve index.html for any other route

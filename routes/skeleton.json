@@ -36,25 +36,13 @@
   "style": "background-color: #FAFAFA;",
   "children": [
     {
-      "element": "nav",
-      "style": "display: flex; align-items: center; justify-content: space-between; max-width: 1110px; width: 100%; margin-inline: auto; box-sizing: border-box; padding-top: 64px;",
-      "children": [
-        {
-          "element": "img",
-          "attributes": {
-            "src": "static/images/logo.svg"
-          }
-        },
-        {
-          "element": "ul",
-          "style": "display: flex; margin: 0; padding: 0; list-style: none; gap: 42px;",
-          "blueprint": {
-            "count": "3",
-            "element": "li",
-            "text": "xyz"
-          }
-        }
-      ]
+      "element": "cwrap-template",
+      "text": "cwrapTemplate[navbar(color1=#5FB4A2)]"
+    },
+    {
+      "element": "header",
+      "style" : "max-width: 1110px; width: 100%; margin: 54px auto 0 auto;",
+      "text": "xyz"
     }
   ]
 }
