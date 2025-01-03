@@ -41,8 +41,18 @@
     },
     {
       "element": "header",
-      "style" : "max-width: 1110px; width: 100%; margin: 54px auto 0 auto;",
-      "text": "xyz"
+      "style": "max-width: 1110px; width: 100%; margin: 54px auto 0 auto; height: fit-content;",
+      "children": [
+        {
+          "element": "img",
+          "style": "width: 100%;",
+          "attributes": {
+            "alt": "Hero image",
+            "src": "static/images/homepage/desktop/image-homepage-hero.jpg",
+            "srcset": "static/images/homepage/desktop/image-homepage-hero.jpg 1x, static/images/homepage/desktop/image-homepage-hero@2x.jpg 2x"
+          }
+        }
+      ]
     }
   ]
 }
