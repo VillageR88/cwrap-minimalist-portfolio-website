@@ -5,10 +5,8 @@
         "style": "display: flex; align-items: center; justify-content: space-between; max-width: 1110px; width: 100%; margin-inline: auto; box-sizing: border-box;",
         "children": [
             {
-                "element": "img",
-                "attributes": {
-                    "src": "static/images/logo.svg"
-                }
+                "element": "cwrap-template",
+                "text": "cwrapTemplate[logo]"
             },
             {
                 "element": "ul",
@@ -110,6 +108,79 @@
                 "element": "span",
                 "style": "max-width: 152px; width: 100%; font-family: Public Sans, serif; font-size: 12px; letter-spacing: 2px; text-align: center; text-decoration: none;",
                 "text": "cwrapProperty[buttonName=ABOUT ME]"
+            }
+        ]
+    },
+    {
+        "element": "footer",
+        "name": "footer",
+        "style": "width: 100%; display: flex; flex-direction: column; margin-top: auto; gap: 150px; align-items: center;",
+        "children": [
+            {
+                "element": "div",
+                "style": "max-width: 1110px; width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 32px;",
+                "children": [
+                    {
+                        "element": "h2",
+                        "style": "max-width: 350px;",
+                        "attributes": {
+                            "class": "title"
+                        },
+                        "text": "Interested in doing a project together?"
+                    },
+                    {
+                        "element": "div",
+                        "style": "max-width: 534px; width: 100%; border-bottom: 1px solid rgba(51, 50, 61, 0.15);"
+                    },
+                    {
+                        "element": "a",
+                        "style": "max-width: 162px;",
+                        "text": "CONTACT ME",
+                        "attributes": {
+                            "class": "button2"
+                        }
+                    }
+                ]
+            },
+            {
+                "element": "div",
+                "style": "background-color: #33323D; min-height: 80px; width: 100%; display: flex; justify-content: center;",
+                "children": [
+                    {
+                        "element": "div",
+                        "style": "max-width: 1110px; width: 100%; display: flex; align-items: center;",
+                        "children": [
+                            {
+                                "element": "div",
+                                "children": [
+                                    {
+                                        "element": "cwrap-template",
+                                        "text": "cwrapTemplate[logo(logoColor=white)]"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "element": "svg",
+        "style": "fill: cwrapProperty[logoColor=#33323D]",
+        "name": "logo",
+        "attributes": {
+            "xmlns": "http://www.w3.org/2000/svg",
+            "width": "61",
+            "height": "32"
+        },
+        "children": [
+            {
+                "element": "path",
+                "attributes": {
+                    "fill-rule": "evenodd",
+                    "d": "M60.082 5.878L44.408 32 28.735 5.878h31.347zM15.673 0l15.674 26.122H0L15.673 0z"
+                }
             }
         ]
     }
