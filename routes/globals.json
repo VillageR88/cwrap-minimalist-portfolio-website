@@ -1,0 +1,61 @@
+{
+    "head": {
+        "title": "New Candy Wrapper project",
+        "link": [
+            {
+                "rel": "shortcut icon",
+                "href": "favicon.ico",
+                "type": "image/x-icon"
+            },
+            {
+                "rel": "stylesheet",
+                "href": "https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap",
+                "type": "text/css"
+            },
+            {
+                "rel": "stylesheet",
+                "href": "https://fonts.googleapis.com/css2?family=Ibarra+Real+Nova:ital,wght@0,400..700;1,400..700&display=swap",
+                "type": "text/css"
+            }
+        ],
+        "meta": [
+            {
+                "name": "viewport",
+                "content": "width=device-width, initial-scale=1.0"
+            },
+            {
+                "charset": "UTF-8"
+            },
+            {
+                "name": "description",
+                "content": "New Candy Wrapper project."
+            },
+            {
+                "name": "keywords",
+                "content": ""
+            }
+        ]
+    },
+    "classroom": [
+        {
+            "name": "chevron1",
+            "type": "class",
+            "style": "animation: flicker 1.5s infinite 1s;"
+        },
+        {
+            "name": "chevron2",
+            "type": "class",
+            "style": "animation: flicker 1.5s infinite 0.5s;"
+        },
+        {
+            "name": "chevron3",
+            "type": "class",
+            "style": "animation: flicker 1.5s infinite;"
+        },
+        {
+            "name": "@keyframes flicker",
+            "type": "custom",
+            "style": "0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; }"
+        }
+    ]
+}

@@ -1,39 +1,6 @@
 {
-  "head": {
-    "title": "New Candy Wrapper project",
-    "link": [
-      {
-        "rel": "shortcut icon",
-        "href": "favicon.ico",
-        "type": "image/x-icon"
-      },
-      {
-        "rel": "stylesheet",
-        "href": "https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap",
-        "type": "text/css"
-      }
-    ],
-    "meta": [
-      {
-        "name": "viewport",
-        "content": "width=device-width, initial-scale=1.0"
-      },
-      {
-        "charset": "UTF-8"
-      },
-      {
-        "name": "description",
-        "content": "New Candy Wrapper project."
-      },
-      {
-        "name": "keywords",
-        "content": ""
-      }
-    ]
-  },
-  "fonts": [],
   "element": "body",
-  "style": "background-color: #FAFAFA;",
+  "style": "background-color: #FAFAFA; box-sizing: border-box; margin:0; padding-top: 64px;",
   "children": [
     {
       "element": "cwrap-template",
@@ -41,16 +8,31 @@
     },
     {
       "element": "header",
-      "style": "max-width: 1110px; width: 100%; margin: 54px auto 0 auto; height: fit-content;",
+      "style": "display: flex; align-items: end; max-width: 1110px; width: 100%; min-height: 600px; margin: 54px auto 0 auto; height: fit-content; position: relative;",
       "children": [
         {
           "element": "img",
-          "style": "width: 100%;",
+          "style": " position: absolute; width: 100%; object-fit: fill; height: 100%; object-fit: cover;",
           "attributes": {
             "alt": "Hero image",
             "src": "static/images/homepage/desktop/image-homepage-hero.jpg",
             "srcset": "static/images/homepage/desktop/image-homepage-hero.jpg 1x, static/images/homepage/desktop/image-homepage-hero@2x.jpg 2x"
           }
+        },
+        {
+          "element": "div",
+          "style": "position: relative; display: flex; flex-direction: column; justify-content: end; gap: 53px; max-width: 445px; width: 100%; height: 357px; min-height: 357px; background-color: #FAFAFA;",
+          "children": [
+            {
+              "element": "h1",
+              "style": "margin: 0 55px 0 0; font-family: Ibarra Real Nova, serif; color: #33323D; font-size: 50px; font-weight: bold; line-height: 50px; letter-spacing: -0.45px;",
+              "text": "Hey, I’m Alex Spencer and I love building beautiful websites"
+            },
+            {
+              "element": "cwrap-template",
+              "text": "cwrapTemplate[button1]"
+            }
+          ]
         }
       ]
     }

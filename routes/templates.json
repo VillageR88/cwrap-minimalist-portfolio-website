@@ -2,7 +2,7 @@
     {
         "element": "nav",
         "name": "navbar",
-        "style": "display: flex; align-items: center; justify-content: space-between; max-width: 1110px; width: 100%; margin-inline: auto; box-sizing: border-box; padding-top: 64px;",
+        "style": "display: flex; align-items: center; justify-content: space-between; max-width: 1110px; width: 100%; margin-inline: auto; box-sizing: border-box;",
         "children": [
             {
                 "element": "img",
@@ -19,7 +19,17 @@
                     "children": [
                         {
                             "element": "a",
-                            "style": "color: cwrapArray[cwrapProperty[color1=#33323D],cwrapProperty[color2=#33323D],cwrapProperty[color3=#33323D]]; text-decoration: none;",
+                            "extend": [
+                                {
+                                    "extension": "::before",
+                                    "style": "content: \"\"; position: absolute; left: 50%; top: 14px; height: 2px; background: #5FB4A2; width: 0%; bottom: 5px; z-index: -1; transition: width 300ms ease-in-out, left 300ms ease-in-out; "
+                                },
+                                {
+                                    "extension": ":hover::before",
+                                    "style": "width: 100%; left: 0%; transform: translateX(0);"
+                                }
+                            ],
+                            "style": "position: relative; color: cwrapArray[cwrapProperty[color1=#33323D],cwrapProperty[color2=#33323D],cwrapProperty[color3=#33323D]]; text-decoration: none;",
                             "text": "cwrapArray[HOME,PORTFOLIO,CONTACT ME]",
                             "attributes": {
                                 "href": "#"
@@ -27,6 +37,79 @@
                         }
                     ]
                 }
+            }
+        ]
+    },
+    {
+        "element": "button",
+        "name": "button1",
+        "attributes": {
+            "class": "button1"
+        },
+        "extend": [
+            {
+                "extension": ":hover",
+                "style": "background-color: #5FB4A2; stroke: white;"
+            },
+            {
+                "extension": ":hover > div:nth-of-type(1)",
+                "style": "stroke: white;"
+            }
+        ],
+        "style": "transition: 250ms; cursor: pointer; padding: 0; border: none; align-items: center; display: flex; max-width: 200px; background-color: #203A4C; color: white; min-height: 48px;",
+        "children": [
+            {
+                "element": "div",
+                "style": "transition: 250ms; stroke: #5FB4A2; background-color: rgba(0,0,0,0.1); min-width: 48px; height: 100%; display: flex; align-items: center; justify-content: center;",
+                "children": [
+                    {
+                        "element": "svg",
+                        "attributes": {
+                            "xmlns": "http://www.w3.org/2000/svg",
+                            "width": "16",
+                            "height": "14"
+                        },
+                        "children": [
+                            {
+                                "element": "g",
+                                "attributes": {
+                                    "fill": "none",
+                                    "fill-rule": "evenodd"
+                                },
+                                "children": [
+                                    {
+                                        "element": "path",
+                                        "attributes": {
+                                            "class": "chevron1",
+                                            "d": "M0 9l8 4 8-4"
+                                        }
+                                    },
+                                    {
+                                        "element": "path",
+                                        "attributes": {
+                                            "class": "chevron2",
+                                            "opacity": ".5",
+                                            "d": "M0 5l8 4 8-4"
+                                        }
+                                    },
+                                    {
+                                        "element": "path",
+                                        "attributes": {
+                                            "class": "chevron3",
+                                            "opacity": ".25",
+                                            "d": "M0 1l8 4 8-4"
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "element": "span",
+                "style": "max-width: 152px; width: 100%; font-family: Public Sans, serif; font-size: 12px; letter-spacing: 2px;",
+                "text": "cwrapProperty[buttonName=ABOUT ME]"
             }
         ]
     }
