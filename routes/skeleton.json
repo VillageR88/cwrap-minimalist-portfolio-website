@@ -30,7 +30,7 @@
             },
             {
               "element": "cwrap-template",
-              "text": "cwrapTemplate[button1]"
+              "text": "cwrapTemplate[button1(button1Id=button-about-me)]"
             }
           ]
         }
