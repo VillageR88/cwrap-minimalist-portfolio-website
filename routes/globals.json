@@ -56,6 +56,26 @@
             "name": "@keyframes flicker",
             "type": "custom",
             "style": "0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; }"
+        },
+        {
+            "name": "title",
+            "type": "class",
+            "style": "color: #33323D; margin:0; font-family: Ibarra Real Nova, serif; font-weight: bold; line-height: 42px; letter-spacing; font-size: 40px;"
+        },
+        {
+            "name": "description",
+            "type": "class",
+            "style": "color: rgba(51, 50, 61, 0.8); margin: 0; font-family: Public Sans, serif; font-size: 16px; line-height: 30px;"
+        },
+        {
+            "name": "button2",
+            "type": "class",
+            "style": "transition: 250ms; font-size: 12px; font-family: Public Sans, serif; cursor: pointer; text-decoration: none; letter-spacing: 2px; align-content: center; min-height: 48px; max-width: 202px; width: 100%; color: #33323D; border: 1px solid #33323D; text-align: center;"
+        },
+        {
+            "name": "button2:hover",
+            "type": "class",
+            "style": "background-color: #33323D; color: white;"
         }
     ]
 }

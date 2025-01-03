@@ -41,7 +41,7 @@
         ]
     },
     {
-        "element": "button",
+        "element": "a",
         "name": "button1",
         "attributes": {
             "class": "button1"
@@ -108,7 +108,7 @@
             },
             {
                 "element": "span",
-                "style": "max-width: 152px; width: 100%; font-family: Public Sans, serif; font-size: 12px; letter-spacing: 2px;",
+                "style": "max-width: 152px; width: 100%; font-family: Public Sans, serif; font-size: 12px; letter-spacing: 2px; text-align: center; text-decoration: none;",
                 "text": "cwrapProperty[buttonName=ABOUT ME]"
             }
         ]

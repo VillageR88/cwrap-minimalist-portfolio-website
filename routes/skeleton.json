@@ -35,6 +35,53 @@
           ]
         }
       ]
+    },
+    {
+      "element": "main",
+      "style": "max-width: 1110px; width: 100%; min-height: 600px; margin: 150px auto 138px auto; display: flex; justify-content: space-between;;",
+      "children": [
+        {
+          "element": "img",
+          "attributes": {
+            "alt": "Hero image",
+            "src": "static/images/homepage/desktop/image-homepage-profile.jpg",
+            "srcset": "static/images/homepage/desktop/image-homepage-profile.jpg 1x, static/images/homepage/desktop/image-homepage-profile@2x.jpg 2x"
+          }
+        },
+        {
+          "element": "div",
+          "style": "gap: 24px; display: flex; flex-direction: column; justify-content: center; max-width: 350px; width: 100%; border-block: 1px solid rgba(51, 50, 61, 0.15);",
+          "children": [
+            {
+              "element": "section",
+              "style": "display: flex; flex-direction: column; gap: 28px;",
+              "children": [
+                {
+                  "element": "h2",
+                  "text": "About Me",
+                  "attributes": {
+                    "class": "title"
+                  }
+                },
+                {
+                  "element": "p",
+                  "text": "I’m a junior front-end developer looking for a new role in an exciting company. I focus on writing accessible HTML, using modern CSS practices and writing clean JavaScript. When writing JavaScript code, I mostly use React, but I can adapt to whatever tools are required. I’m based in London, UK, but I’m happy working remotely and have experience in remote teams. When I’m not coding, you’ll find me outdoors. I love being out in nature whether that’s going for a walk, run or cycling. I’d love you to check out my work.",
+                  "attributes": {
+                    "class": "description"
+                  }
+                }
+              ]
+            },
+            {
+              "element": "a",
+              "text": "GO TO PORTFOLIO",
+              "attributes": {
+                "class": "button2"
+              }
+            }
+          ]
+        }
+      ]
     }
   ]
 }
