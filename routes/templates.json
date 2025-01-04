@@ -95,6 +95,7 @@
         "children": [
             {
                 "element": "div",
+                "omit-id": "omitFooterContact",
                 "style": "max-width: 1110px; width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 32px;",
                 "children": [
                     {
@@ -219,7 +220,7 @@
                     "style": "position: relative; color: cwrapArray[cwrapProperty[color1=#33323D],cwrapProperty[color2=#33323D],cwrapProperty[color3=#33323D]]; text-decoration: none;",
                     "text": "cwrapArray[HOME,PORTFOLIO,CONTACT ME]",
                     "attributes": {
-                        "href": "#"
+                        "href": "cwrapArray[./,./portfolio,./contact-me]"
                     }
                 }
             ]
