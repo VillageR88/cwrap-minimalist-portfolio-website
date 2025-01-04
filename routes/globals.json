@@ -58,9 +58,24 @@
             "style": "0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; }"
         },
         {
+            "name": "@keyframes moveRightLeft",
+            "type": "custom",
+            "style": "0% { transform: translateX(0); } 50% { transform: translateX(100%); } 100% { transform: translateX(0); }"
+        },
+        {
+            "name": "@keyframes moveLeftRight",
+            "type": "custom",
+            "style": "0% { transform: translateX(0) rotate(180deg); } 50% { transform: translateX(-100%) rotate(180deg); } 100% { transform: translateX(0) rotate(180deg); }"
+        },
+        {
             "name": "title",
             "type": "class",
             "style": "color: #33323D; margin:0; font-family: Ibarra Real Nova, serif; font-weight: bold; line-height: 42px; letter-spacing; font-size: 40px;"
+        },
+        {
+            "name": "titleNarrow",
+            "type": "class",
+            "style": "font-family: Ibarra Real Nova, serif; margin: 0; font-size: 32px; line-height: 42px; letter-spacing: -0.29px; font-weight: normal;"
         },
         {
             "name": "description",
@@ -76,12 +91,20 @@
             "name": "button2:hover",
             "type": "class",
             "style": "background-color: #33323D; color: white;"
+        },
+        {
+            "name": "text1",
+            "type": "class",
+            "style": "color: #5FB4A2; font-weight: bold; font-family: Public Sans, serif; line-height: 30px; margin: 0;"
         }
     ],
     "const": {
         "manageDescription": "This project required me to build a fully responsive landing page to the designs provided. I used HTML5, along with CSS Grid and JavaScript for the areas that required interactivity, such as the testimonial slider.",
         "bookmarkDescription": "This project required me to build a fully responsive landing page to the designs provided. I used HTML5, along with CSS Grid and JavaScript for the areas that required interactivity, such as the features section.",
         "insureDescription": "This was a small project which mostly consisted of HTML and CSS. I built a fully-responsive landing page. The only JavaScript this project required was to enable the toggling of the mobile navigation.",
-        "fyloDescription": "This project was built in pure HTML and CSS. I had mobile and desktop designs to work to and built it so that it was fully-responsive. I took a mobile-first approach and used modern CSS like Flexbox and Grid for layout purposes."
+        "fyloDescription": "This project was built in pure HTML and CSS. I had mobile and desktop designs to work to and built it so that it was fully-responsive. I took a mobile-first approach and used modern CSS like Flexbox and Grid for layout purposes.",
+        "description1": "Interaction Design / Front End Development",
+        "description2Short": "HTML / CSS",
+        "description2Long": "HTML / CSS / JS"
     }
 }

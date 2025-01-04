@@ -18,18 +18,18 @@
           "blueprint": {
             "count": "4",
             "element": "li",
-            "style": "display: flex; max-width: 1015px; width: 100%; justify-content: space-between; align-items: center;",
+            "style": "display: flex; max-width: 1015px; width: 100%; justify-content: space-between;",
             "children": [
               {
                 "element": "img",
                 "attributes": {
-                    "src": "../static/images/portfolio/desktop/image-portfolio-cwrapArray[manage,bookmark,insure,fylo].jpg",
-                    "srcset": "../static/images/portfolio/desktop/image-portfolio-cwrapArray[manage,bookmark,insure,fylo].jpg 1x, ../static/images/portfolio/desktop/image-portfolio-cwrapArray[manage,bookmark,insure,fylo]@2x.jpg 2x"
+                  "src": "../static/images/portfolio/desktop/image-portfolio-cwrapArray[manage,bookmark,insure,fylo].jpg",
+                  "srcset": "../static/images/portfolio/desktop/image-portfolio-cwrapArray[manage,bookmark,insure,fylo].jpg 1x, ../static/images/portfolio/desktop/image-portfolio-cwrapArray[manage,bookmark,insure,fylo]@2x.jpg 2x"
                 }
               },
               {
                 "element": "div",
-                "style": "max-width: 350px;  display: flex; flex-direction: column; gap: 24px;",
+                "style": "max-width: 350px; justify-content: center; display: flex; flex-direction: column; gap: 24px; border-block: 1px solid rgba(51, 50, 61, 0.15); min-height: 100%;",
                 "children": [
                   {
                     "element": "section",
@@ -55,7 +55,8 @@
                     "element": "a",
                     "text": "GO TO PORTFOLIO",
                     "attributes": {
-                      "class": "button2"
+                      "class": "button2",
+                      "href": "detail"
                     }
                   }
                 ]

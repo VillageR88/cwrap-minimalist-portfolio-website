@@ -212,17 +212,21 @@ function createElementFromJson(
               element.appendChild(clonedTemplateElement);
             }
           }
-        } else if (part.startsWith("cwrapProperty")) {
-          const propertyMatch = part.match(
-            /cwrapProperty\[([^\]=]+)=([^\]]+)\]/
-          );
-          if (propertyMatch) {
-            const [property, defaultValue] = propertyMatch.slice(1);
-            const mapValue = properties?.get(propertyMatch[1]);
+        } else if (part.includes("cwrapProperty")) {
+          let replacedText = originalText;
+          const regex = /cwrapProperty\[([^\]=]+)=([^\]]+)\]/g;
+          const matches = [...originalText.matchAll(regex)];
+          for (const match of matches) {
+            const [fullMatch, property, defaultValue] = match;
+            const mapValue = properties?.get(property);
             if (mapValue !== "cwrapPlaceholder") {
-              element.append(mapValue || defaultValue);
+              replacedText = replacedText.replace(
+                fullMatch,
+                mapValue || defaultValue
+              );
             }
           }
+          element.append(replacedText);
         } else {
           element.append(part);
         }
@@ -1052,6 +1056,24 @@ function generateCssSelector(
     // Handle extensions
     if (jsonObj.extend) {
       for (const extension of jsonObj.extend) {
+        if (extension.style.includes("cwrapProperty")) {
+          const parts = extension.style.split(/(cwrapProperty\[[^\]]+\])/);
+          for (let i = 1; i < parts.length; i++) {
+            if (parts[i].startsWith("cwrapProperty")) {
+              const propertyMatch = parts[i].match(
+                /cwrapProperty\[([^\]=]+)=([^\]]+)\]/
+              );
+              if (propertyMatch) {
+                const [property, defaultValue] = propertyMatch.slice(1);
+                const mapValue = propsMap.get(property);
+                extension.style = extension.style.replace(
+                  parts[i],
+                  mapValue || defaultValue
+                );
+              }
+            }
+          }
+        }
         const extendedSelector = `${selector}${extension.extension}`;
         cssMap.set(extendedSelector, extension.style);
       }
