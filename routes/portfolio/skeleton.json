@@ -1,5 +1,5 @@
 {
   "element": "cwrap-template",
-  "text": "cwrapTemplate[bodyUniversal(color2=#5FB4A2)]",
+  "text": "cwrapTemplate[bodyUniversal(color2=#5FB4A2,prefix=../)]",
   "passover": []
 }

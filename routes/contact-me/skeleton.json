@@ -3,6 +3,6 @@
   "omit": [
     "omitFooterContact"
   ],
-  "text": "cwrapTemplate[bodyUniversal(color3=#5FB4A2)]",
+  "text": "cwrapTemplate[bodyUniversal(color3=#5FB4A2,prefix=../)]",
   "passover": []
 }
