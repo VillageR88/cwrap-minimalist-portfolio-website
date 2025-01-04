@@ -130,7 +130,7 @@
                         "children": [
                             {
                                 "element": "div",
-                                "style": "display: flex; align-items: center; gap: 49px;",
+                                "style": "display: flex; align-items: center; gap: 49px; ",
                                 "children": [
                                     {
                                         "element": "cwrap-template",
@@ -181,7 +181,7 @@
     {
         "element": "svg",
         "name": "logo",
-        "style": "fill: cwrapProperty[logoColor=#33323D]",
+        "style": "fill: cwrapProperty[logoColor=#33323D]; ",
         "attributes": {
             "xmlns": "http://www.w3.org/2000/svg",
             "width": "61",
@@ -190,9 +190,30 @@
         "children": [
             {
                 "element": "path",
+                "style": "transition: 0.5s ease-out;",
+                "extend": [
+                    {
+                        "extension": ":hover",
+                        "style": "transform: scale(1.1) translate(-5px, -2px);"
+                    }
+                ],
                 "attributes": {
                     "fill-rule": "evenodd",
-                    "d": "M60.082 5.878L44.408 32 28.735 5.878h31.347zM15.673 0l15.674 26.122H0L15.673 0z"
+                    "d": "M60.082 5.878L44.408 32 28.735 5.878h31.347z"
+                }
+            },
+            {
+                "element": "path",
+                "style": "transition: 0.5s;",
+                "extend": [
+                    {
+                        "extension": ":hover",
+                        "style": "transform: scale(1.1); "
+                    }
+                ],
+                "attributes": {
+                    "fill-rule": "evenodd",
+                    "d": "M15.673 0l15.674 26.122H0L15.673 0z"
                 }
             }
         ]
@@ -295,13 +316,6 @@
             {
                 "element": "cwrap-template",
                 "text": "cwrapTemplate[footer]"
-            },
-            {
-                "element": "script",
-                "attributes": {
-                    "src": "static/scripts/cwrapChip.js",
-                    "type": "module"
-                }
             }
         ]
     }

@@ -76,11 +76,6 @@
             "name": "button2:hover",
             "type": "class",
             "style": "background-color: #33323D; color: white;"
-        },
-        {
-            "name": "@keyframes glowing",
-            "type": "custom",
-            "style": "0% { filter: drop-shadow(0 0 1px #5FB4A2); } 100% { filter: drop-shadow(0 0 6px #5FB4A2); }"
         }
     ]
 }
