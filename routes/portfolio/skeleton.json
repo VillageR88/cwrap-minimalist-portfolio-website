@@ -1,5 +1,69 @@
 {
   "element": "cwrap-template",
   "text": "cwrapTemplate[bodyUniversal(color2=#5FB4A2,prefix=../)]",
-  "passover": []
+  "passover": [
+    {
+      "element": "main",
+      "style": "max-width: 1110px; width: 100%; display: flex; flex-direction: column; margin-inline: auto; margin-block: 94px 150px;",
+      "children": [
+        {
+          "element": "ul",
+          "extend": [
+            {
+              "extension": " > li:nth-of-type(even)",
+              "style": "flex-direction: row-reverse; align-self: end;"
+            }
+          ],
+          "style": "margin: 0; padding: 0; list-style: none; gap: 80px; display: flex; flex-direction: column;",
+          "blueprint": {
+            "count": "4",
+            "element": "li",
+            "style": "display: flex; max-width: 1015px; width: 100%; justify-content: space-between; align-items: center;",
+            "children": [
+              {
+                "element": "img",
+                "attributes": {
+                    "src": "../static/images/portfolio/desktop/image-portfolio-cwrapArray[manage,bookmark,insure,fylo].jpg",
+                    "srcset": "../static/images/portfolio/desktop/image-portfolio-cwrapArray[manage,bookmark,insure,fylo].jpg 1x, ../static/images/portfolio/desktop/image-portfolio-cwrapArray[manage,bookmark,insure,fylo]@2x.jpg 2x"
+                }
+              },
+              {
+                "element": "div",
+                "style": "max-width: 350px;  display: flex; flex-direction: column; gap: 24px;",
+                "children": [
+                  {
+                    "element": "section",
+                    "style": "display: flex; flex-direction: column; gap: 28px;",
+                    "children": [
+                      {
+                        "element": "h2",
+                        "attributes": {
+                          "class": "title"
+                        },
+                        "text": "cwrapArray[Manage,Bookmark,Insure,Fylo]"
+                      },
+                      {
+                        "element": "p",
+                        "attributes": {
+                          "class": "description"
+                        },
+                        "text": "cwrapArray[cwrapGlobal[manageDescription] cwrapBreak cwrapGlobal[manageDescription] cwrapBreak cwrapGlobal[insureDescription] cwrapBreak cwrapGlobal[fyloDescription]]"
+                      }
+                    ]
+                  },
+                  {
+                    "element": "a",
+                    "text": "GO TO PORTFOLIO",
+                    "attributes": {
+                      "class": "button2"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
 }

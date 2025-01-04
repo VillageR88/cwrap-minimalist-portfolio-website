@@ -235,7 +235,7 @@
                         },
                         {
                             "extension": ":hover::before",
-                            "style": "width: 100%; left: 0%; transform: translateX(0) scale(1.05); filter: drop-shadow(0 0 6px #5FB4A2);"
+                            "style": "width: 100%; left: calc(0% - 1px); transform: translateX(0) scale(1.05); filter: drop-shadow(0 0 6px #5FB4A2);"
                         }
                     ],
                     "style": "position: relative; color: cwrapArray[cwrapProperty[color1=#33323D],cwrapProperty[color2=#33323D],cwrapProperty[color3=#33323D]]; text-decoration: none;",

@@ -3,3 +3,4 @@ node_modules/
 installation.log
 .gitignore
 build/
+dist/
