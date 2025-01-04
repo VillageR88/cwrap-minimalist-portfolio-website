@@ -295,14 +295,8 @@
             {
                 "element": "cwrap-template",
                 "text": "cwrapTemplate[footer]"
-            },
-            {
-                "element": "script",
-                "attributes": {
-                    "src": "static/scripts/cwrapChip.js",
-                    "type": "module"
-                }
             }
+           
         ]
     }
 ]
