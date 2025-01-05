@@ -7,13 +7,33 @@
       "style": "display: flex; align-items: end; max-width: 1110px; width: 100%; min-height: 600px; margin: 54px auto 0 auto; height: fit-content; position: relative;",
       "children": [
         {
-          "element": "img",
-          "style": " position: absolute; width: 100%; object-fit: fill; height: 100%; object-fit: cover;",
-          "attributes": {
-            "alt": "Hero image",
-            "src": "static/images/homepage/desktop/image-homepage-hero.jpg",
-            "srcset": "static/images/homepage/desktop/image-homepage-hero.jpg 1x, static/images/homepage/desktop/image-homepage-hero@2x.jpg 2x"
-          }
+          "element": "picture",
+          "style": "position: absolute; width: 100%; height: 100%; display: flex;",
+          "children": [
+            {
+              "element": "source",
+              "attributes": {
+                "media": "(max-width: 640px)",
+                "srcset": "static/images/homepage/mobile/image-homepage-hero.jpg 1x, static/images/homepage/mobile/image-homepage-hero@2x.jpg 2x"
+              }
+            },
+            {
+              "element": "source",
+              "attributes": {
+                "media": "(max-width: 920px)",
+                "srcset": "static/images/homepage/tablet/image-homepage-hero.jpg 1x, static/images/homepage/tablet/image-homepage-hero@2x.jpg 2x"
+              }
+            },
+            {
+              "element": "img",
+              "style": "width: 100%; height: 100%; object-fit: cover; display: flex;",
+              "attributes": {
+                "alt": "Hero image",
+                "src": "static/images/homepage/desktop/image-homepage-hero.jpg",
+                "srcset": "static/images/homepage/desktop/image-homepage-hero.jpg 1x, static/images/homepage/desktop/image-homepage-hero@2x.jpg 2x"
+              }
+            }
+          ]
         },
         {
           "element": "div",
@@ -34,19 +54,46 @@
     },
     {
       "element": "main",
+      "mediaQueries": [
+        {
+          "query": "max-width: 940px",
+          "style": "margin-block: 96px;"
+        }
+      ],
       "style": "max-width: 1110px; width: 100%; min-height: 600px; margin: 150px auto 138px auto;",
       "children": [
         {
           "element": "div",
-          "style": "display: flex; justify-content: space-between; max-width: 1015px;",
+          "style": "display: flex; justify-content: space-between; max-width: 1015px; gap: 32px;",
           "children": [
             {
-              "element": "img",
-              "attributes": {
-                "alt": "Hero image",
-                "src": "static/images/homepage/desktop/image-homepage-profile.jpg",
-                "srcset": "static/images/homepage/desktop/image-homepage-profile.jpg 1x, static/images/homepage/desktop/image-homepage-profile@2x.jpg 2x"
-              }
+              "element": "picture",
+              "style": "width: 100%; height: 100%; display: flex; ",
+              "children": [
+                {
+                  "element": "source",
+                  "attributes": {
+                    "media": "(max-width: 640px)",
+                    "srcset": "static/images/homepage/mobile/image-homepage-profile.jpg 1x, static/images/homepage/mobile/image-homepage-profile@2x.jpg 2x"
+                  }
+                },
+                {
+                  "element": "source",
+                  "attributes": {
+                    "media": "(max-width: 940px)",
+                    "srcset": "static/images/homepage/tablet/image-homepage-profile.jpg 1x, static/images/homepage/tablet/image-homepage-profile@2x.jpg 2x"
+                  }
+                },
+                {
+                  "element": "img",
+                  "style": "max-width: 540px; width: 100%; height: 100%; display: flex;",
+                  "attributes": {
+                    "alt": "Profile image",
+                    "src": "static/images/homepage/desktop/image-homepage-profile.jpg",
+                    "srcset": "static/images/homepage/desktop/image-homepage-profile.jpg 1x, static/images/homepage/desktop/image-homepage-profile@2x.jpg 2x"
+                  }
+                }
+              ]
             },
             {
               "element": "div",

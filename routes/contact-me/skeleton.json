@@ -1,7 +1,8 @@
 {
   "element": "cwrap-template",
   "omit": [
-    "omitFooterContact"
+    "omitFooterContact",
+    "omitScript"
   ],
   "text": "cwrapTemplate[bodyUniversal(color3=#5FB4A2,prefix=../)]",
   "passover": [

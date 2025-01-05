@@ -91,16 +91,16 @@
     {
         "element": "footer",
         "name": "footer",
-        "style": "width: 100%; display: flex; flex-direction: column; margin-top: auto; gap: 150px; align-items: center;",
+        "style": "width: calc(100% + 32px * 2); display: flex; flex-direction: column; margin-top: auto; gap: 150px; align-items: center;",
         "children": [
             {
                 "element": "div",
                 "omit-id": "omitFooterContact",
-                "style": "max-width: 1110px; width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 32px;",
+                "style": "max-width: 1110px; width: calc(100% - 32px * 2); display: flex; align-items: center; justify-content: space-between; gap: 32px;",
                 "children": [
                     {
                         "element": "h2",
-                        "style": "max-width: 350px;",
+                        "style": "min-width: 350px;",
                         "attributes": {
                             "class": "title"
                         },
@@ -127,27 +127,33 @@
                 "children": [
                     {
                         "element": "div",
-                        "style": "max-width: 1110px; width: 100%; display: flex; ",
+                        "style": "display: flex; align-items: center; max-width: 1110px; width: calc(100% - 32px * 2);",
                         "children": [
                             {
                                 "element": "div",
-                                "style": "display: flex; align-items: center; gap: 49px; ",
+                                "style": "width: 100%; display: flex; ",
                                 "children": [
                                     {
-                                        "element": "cwrap-template",
-                                        "text": "cwrapTemplate[logo(logoColor=white)]"
-                                    },
-                                    {
-                                        "element": "cwrap-template",
-                                        "text": "cwrapTemplate[navigationUl(color1=white,color2=white,color3=white)]"
+                                        "element": "div",
+                                        "style": "display: flex; align-items: center; gap: 49px; ",
+                                        "children": [
+                                            {
+                                                "element": "cwrap-template",
+                                                "text": "cwrapTemplate[logo(logoColor=white)]"
+                                            },
+                                            {
+                                                "element": "cwrap-template",
+                                                "text": "cwrapTemplate[navigationUl(color1=white,color2=white,color3=white)]"
+                                            }
+                                        ]
                                     }
                                 ]
+                            },
+                            {
+                                "element": "cwrap-template",
+                                "text": "cwrapTemplate[ulSocial(iconFill=white,glowSize=6px)]"
                             }
                         ]
-                    },
-                    {
-                        "element": "cwrap-template",
-                        "text": "cwrapTemplate[ulSocial(iconFill=white,glowSize=6px)]"
                     }
                 ]
             }
@@ -279,7 +285,7 @@
     {
         "element": "body",
         "name": "bodyUniversal",
-        "style": "display:flex; flex-direction: column; background-color: #FAFAFA; box-sizing: border-box; margin:0; padding-top: 64px; min-height: 100dvh; box-sizing: border-box;",
+        "style": "display: flex; flex-direction: column; align-items:center; background-color: #FAFAFA; box-sizing: border-box; margin:0; padding-top: 64px; padding-inline: 32px; min-height: 100dvh; box-sizing: border-box;",
         "children": [
             {
                 "element": "cwrap-template",
@@ -291,6 +297,21 @@
             {
                 "element": "cwrap-template",
                 "text": "cwrapTemplate[footer]"
+            },
+            {
+                "element": "script",
+                "attributes": {
+                    "src": "cwrapProperty[prefix=./]static/scripts/home.js",
+                    "type": "module"
+                }
+            },
+            {
+                "element": "script",
+                "omit-id": "omitScript",
+                "attributes": {
+                    "src": "cwrapProperty[prefix=./]static/scripts/home.js",
+                    "type": "module"
+                }
             }
         ]
     },
