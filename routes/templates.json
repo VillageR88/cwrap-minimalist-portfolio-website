@@ -115,7 +115,8 @@
                         "style": "max-width: 162px;",
                         "text": "CONTACT ME",
                         "attributes": {
-                            "class": "button2"
+                            "class": "button2",
+                            "href": "cwrapProperty[prefix=./]contact-me"
                         }
                     }
                 ]
@@ -322,17 +323,20 @@
     {
         "element": "a",
         "name": "projectTransition",
+        "attributes": {
+            "href": "../cwrapProperty[transitionLink=transitionLink]"
+        },
         "extend": [
             {
                 "extension": ":hover > svg",
                 "style": "animation: cwrapProperty[animation=animation] 2s linear infinite;"
             }
         ],
-        "style": "display: flex; flex-direction: cwrapProperty[transitionRowDirection=row]; align-items: center; gap: 32px; border: none; cursor: pointer; padding: 0; background-color: unset;",
+        "style": "text-decoration: none; display: flex; flex-direction: cwrapProperty[transitionRowDirection=row]; align-items: center; gap: 32px; border: none; cursor: pointer; padding: 0; background-color: unset;",
         "children": [
             {
                 "element": "svg",
-                "style": "transform: rotate(cwrapProperty[arrowRotation=0]deg);",
+                "style": "transform: rotate(cwrapProperty[arrowRotation=0]deg); color: unset;",
                 "attributes": {
                     "xmlns": "http://www.w3.org/2000/svg",
                     "width": "10",
@@ -355,6 +359,7 @@
                 "children": [
                     {
                         "element": "h3",
+                        "style": "color: #33323D",
                         "attributes": {
                             "class": "titleNarrow"
                         },
