@@ -8,6 +8,16 @@
   "passover": [
     {
       "element": "main",
+      "mediaQueries": [
+        {
+          "query": "max-width: 960px",
+          "style": "flex-direction: column; gap: 24px;"
+        },
+        {
+          "query": "max-width: 768px",
+          "style": "margin-top: 40px;"
+        }
+      ],
       "style": "display: flex; justify-content: space-between; max-width: 1110px; width: 100%; margin-inline: auto; margin-top: 94px; padding-block: 48px; border-block: 1px solid rgba(51, 50, 61, 0.15);",
       "children": [
         {
@@ -19,6 +29,12 @@
         },
         {
           "element": "div",
+          "mediaQueries": [
+            {
+              "query": "max-width: 960px",
+              "style": "max-width: unset;"
+            }
+          ],
           "style": "display: flex; flex-direction: column; max-width: 635px; gap: 24px; width: 100%;",
           "children": [
             {
@@ -41,7 +57,17 @@
       "attributes": {
         "action": "../"
       },
-      "style": "display: flex; justify-content: space-between; max-width: 1110px; width: 100%; margin-inline: auto; margin-block: 47px 109px; ",
+      "mediaQueries": [
+        {
+          "query": "max-width: 960px",
+          "style": "flex-direction: column; gap: 32px;"
+        },
+        {
+          "query": "max-width: 768px",
+          "style": "margin-block: 24px 80px;"
+        }
+      ],
+      "style": "display: flex; justify-content: space-between; max-width: 1110px; width: 100%; margin-inline: auto; margin-block: 47px 109px;",
       "children": [
         {
           "element": "h2",
@@ -52,6 +78,12 @@
         },
         {
           "element": "div",
+          "mediaQueries": [
+            {
+              "query": "max-width: 960px",
+              "style": "max-width: unset;"
+            }
+          ],
           "style": "display: flex; flex-direction: column; max-width: 635px; width: 100%; gap: 24px;",
           "children": [
             {
@@ -93,6 +125,17 @@
             {
               "element": "button",
               "text": "SEND MESSAGE",
+              "extend": [
+                {
+                  "extension": "::before",
+                  "style": "content: \"\"; position: absolute; left: 50%; height: 2px; background: #5FB4A2; width: 0%; bottom: 14px; z-index: 1; transition: width 300ms ease-in-out, 300ms ease-in-out; "
+                },
+                {
+                  "extension": ":hover::before",
+                  "style": "width: 100%; left: 0; transform: translateX(0) scale(0.6, 1.05); filter: drop-shadow(0 0 6px #5FB4A2);"
+                }
+              ],
+              "style": "background-color: #203A4C; color: white; position: relative;",
               "attributes": {
                 "class": "button2"
               }
