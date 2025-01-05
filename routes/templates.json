@@ -10,7 +10,7 @@
             },
             {
                 "element": "cwrap-template",
-                "text": "cwrapTemplate[navigationUl]"
+                "text": "cwrapTemplate[navigationUl(navigationDisplay=none)]"
             }
         ]
     },
@@ -35,7 +35,7 @@
         "children": [
             {
                 "element": "div",
-                "style": "transition: 250ms; stroke: #5FB4A2; background-color: rgba(0,0,0,0.1); min-width: 48px; height: 100%; display: flex; align-items: center; justify-content: center;",
+                "style": "transition: 250ms; stroke: #5FB4A2; background-color: rgba(0,0,0,0.1); min-width: 48px; min-height: 48px; display: flex; align-items: center; justify-content: center;",
                 "children": [
                     {
                         "element": "svg",
@@ -91,15 +91,33 @@
     {
         "element": "footer",
         "name": "footer",
+        "mediaQueries": [
+            {
+                "query": "max-width: 768px",
+                "style": "gap: 80px;"
+            }
+        ],
         "style": "width: calc(100% + 32px * 2); display: flex; flex-direction: column; margin-top: auto; gap: 150px; align-items: center;",
         "children": [
             {
                 "element": "div",
                 "omit-id": "omitFooterContact",
+                "mediaQueries": [
+                    {
+                        "query": "max-width: 768px",
+                        "style": "flex-direction: column; text-align: center;"
+                    }
+                ],
                 "style": "max-width: 1110px; width: calc(100% - 32px * 2); display: flex; align-items: center; justify-content: space-between; gap: 32px;",
                 "children": [
                     {
                         "element": "h2",
+                        "mediaQueries": [
+                            {
+                                "query": "max-width: 768px",
+                                "style": "min-width: unset;"
+                            }
+                        ],
                         "style": "min-width: 350px;",
                         "attributes": {
                             "class": "title"
@@ -108,6 +126,12 @@
                     },
                     {
                         "element": "div",
+                        "mediaQueries": [
+                            {
+                                "query": "max-width: 768px",
+                                "style": "display: none;"
+                            }
+                        ],
                         "style": "max-width: 534px; width: 100%; border-bottom: 1px solid rgba(51, 50, 61, 0.15);"
                     },
                     {
@@ -123,18 +147,42 @@
             },
             {
                 "element": "div",
+                "mediaQueries": [
+                    {
+                        "query": "max-width: 768px",
+                        "style": "min-height: 354px;"
+                    }
+                ],
                 "style": "background-color: #33323D; z-index: 0; min-height: 80px; width: 100%; display: flex; align-items: center; justify-content: center;",
                 "children": [
                     {
                         "element": "div",
-                        "style": "display: flex; align-items: center; max-width: 1110px; width: calc(100% - 32px * 2);",
+                        "mediaQueries": [
+                            {
+                                "query": "max-width: 768px",
+                                "style": "flex-direction: column; gap: 40px;"
+                            }
+                        ],
+                        "style": "display: flex; align-items: center;  max-width: 1110px; width: calc(100% - 32px * 2);",
                         "children": [
                             {
                                 "element": "div",
-                                "style": "width: 100%; display: flex; ",
+                                "mediaQueries": [
+                                    {
+                                        "query": "max-width: 768px",
+                                        "style": "justify-content: center;"
+                                    }
+                                ],
+                                "style": "width: 100%; display: flex;",
                                 "children": [
                                     {
                                         "element": "div",
+                                        "mediaQueries": [
+                                            {
+                                                "query": "max-width: 768px",
+                                                "style": "flex-direction: column;"
+                                            }
+                                        ],
                                         "style": "display: flex; align-items: center; gap: 49px; ",
                                         "children": [
                                             {
@@ -143,7 +191,7 @@
                                             },
                                             {
                                                 "element": "cwrap-template",
-                                                "text": "cwrapTemplate[navigationUl(color1=white,color2=white,color3=white)]"
+                                                "text": "cwrapTemplate[navigationUl(color1=white,color2=white,color3=white,navigationDisplay=cwrapOmit)]"
                                             }
                                         ]
                                     }
@@ -202,6 +250,12 @@
     {
         "element": "ul",
         "name": "navigationUl",
+        "mediaQueries": [
+            {
+                "query": "max-width: 768px",
+                "style": "flex-direction: column; align-items: center; display: cwrapProperty[navigationDisplay=cwrapOmit];"
+            }
+        ],
         "style": "font-family: Public Sans, serif; font-size: 12px; letter-spacing: 2px; display: flex; margin: 0; padding: 0; list-style: none; gap: 42px;",
         "blueprint": {
             "count": "3",
@@ -285,6 +339,12 @@
     {
         "element": "body",
         "name": "bodyUniversal",
+        "mediaQueries": [
+            {
+                "query": "max-width: 768px",
+                "style": "padding-top: 32px;"
+            }
+        ],
         "style": "display: flex; flex-direction: column; align-items:center; background-color: #FAFAFA; box-sizing: border-box; margin:0; padding-top: 64px; padding-inline: 32px; min-height: 100dvh; box-sizing: border-box;",
         "children": [
             {
@@ -297,13 +357,6 @@
             {
                 "element": "cwrap-template",
                 "text": "cwrapTemplate[footer]"
-            },
-            {
-                "element": "script",
-                "attributes": {
-                    "src": "cwrapProperty[prefix=./]static/scripts/home.js",
-                    "type": "module"
-                }
             },
             {
                 "element": "script",
