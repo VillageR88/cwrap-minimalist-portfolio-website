@@ -235,11 +235,17 @@
         },
         {
           "element": "div",
+          "mediaQueries": [
+            {
+              "query": "max-width: 768px",
+              "style": "height: 148px;"
+            }
+          ],
           "style": "display: flex; align-items: center; justify-content: space-between; height: 132px; width: 100%; margin-top: 64px; border-block: 1px solid rgba(51, 50, 61, 0.15);",
           "children": [
             {
               "element": "cwrap-template",
-              "text": "cwrapTemplate[projectTransition(animation=moveRightLeft,transitionTitle=cwrapRoutes[Fylo,Manage,Bookmark,Insure],transitionLink=cwrapRoutes[fylo,manage,bookmark,insure],direction=Previous)]"
+              "text": "cwrapTemplate[projectTransition(animation=moveRightLeft,transitionTitle=cwrapRoutes[Fylo,Manage,Bookmark,Insure],transitionLink=cwrapRoutes[fylo,manage,bookmark,insure],direction=Previous,alignQueryArrow=start)]"
             },
             {
               "element": "div",
@@ -247,7 +253,7 @@
             },
             {
               "element": "cwrap-template",
-              "text": "cwrapTemplate[projectTransition(animation=moveLeftRight,transitionTitle=cwrapRoutes[Bookmark,Insure,Fylo,Manage],transitionLink=cwrapRoutes[bookmark,insure,fylo,manage],direction=Next,alignTransition=end,transitionRowDirection=row-reverse,arrowRotation=180)]"
+              "text": "cwrapTemplate[projectTransition(animation=moveLeftRight,transitionTitle=cwrapRoutes[Bookmark,Insure,Fylo,Manage],transitionLink=cwrapRoutes[bookmark,insure,fylo,manage],direction=Next,alignTransition=end,transitionRowDirection=row-reverse,arrowRotation=180,alignQueryArrow=end)]"
             }
           ]
         }

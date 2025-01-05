@@ -380,6 +380,12 @@
                 "style": "animation: cwrapProperty[animation=animation] 2s linear infinite;"
             }
         ],
+        "mediaQueries": [
+            {
+                "query": "max-width: 768px",
+                "style": "flex-direction: column; gap: 16px; align-items: cwrapProperty[alignQueryArrow=cwrapOmit];"
+            }
+        ],
         "style": "text-decoration: none; display: flex; flex-direction: cwrapProperty[transitionRowDirection=row]; align-items: center; gap: 32px; border: none; cursor: pointer; padding: 0; background-color: unset;",
         "children": [
             {
