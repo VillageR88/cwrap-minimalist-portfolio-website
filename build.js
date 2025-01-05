@@ -1,5 +1,5 @@
 const mkdirp = require("mkdirp");
-const fs = require("node:fs");
+const fs = require("fs-extra");
 const path = require("node:path");
 const { JSDOM } = require("jsdom");
 const { document } = new JSDOM().window;
@@ -797,6 +797,13 @@ function main() {
   const routesDir = path.resolve("routes");
   const buildDir = isDevelopment ? path.resolve("dist") : path.resolve("build");
   if (!isDevelopment) console.log("Starting build process...");
+
+  // Ensure the build directory is deleted before building
+  if (fs.existsSync(buildDir)) {
+    fs.removeSync(buildDir);
+    if (!isDevelopment)
+      console.log(`Deleted existing build directory ${buildDir}`);
+  }
 
   // Ensure the build directory exists
   if (!fs.existsSync(buildDir)) {
