@@ -4,5 +4,101 @@
     "omitFooterContact"
   ],
   "text": "cwrapTemplate[bodyUniversal(color3=#5FB4A2,prefix=../)]",
-  "passover": []
+  "passover": [
+    {
+      "element": "main",
+      "style": "display: flex; justify-content: space-between; max-width: 1110px; width: 100%; margin-inline: auto; margin-top: 94px; padding-block: 48px; border-block: 1px solid rgba(51, 50, 61, 0.15);",
+      "children": [
+        {
+          "element": "h2",
+          "attributes": {
+            "class": "title"
+          },
+          "text": "Get in Touch"
+        },
+        {
+          "element": "div",
+          "style": "display: flex; flex-direction: column; max-width: 635px; gap: 24px; width: 100%;",
+          "children": [
+            {
+              "element": "p",
+              "attributes": {
+                "class": "description"
+              },
+              "text": "I’d love to hear about what you’re working on and how I could help. I’m currently looking for a new role and am open to a wide range of opportunities. My preference would be to find a position in a company in London. But I’m also happy to hear about opportunities that don’t fit that description. I’m a hard-working and positive person who will always approach each task with a sense of purpose and attention to detail. Please do feel free to check out my online profiles below and get in touch using the form."
+            },
+            {
+              "element": "cwrap-template",
+              "text": "cwrapTemplate[ulSocial(iconFill=#33323D,glowSize=0px)]"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "element": "form",
+      "attributes": {
+        "action": "../"
+      },
+      "style": "display: flex; justify-content: space-between; max-width: 1110px; width: 100%; margin-inline: auto; margin-block: 47px 109px; ",
+      "children": [
+        {
+          "element": "h2",
+          "attributes": {
+            "class": "title"
+          },
+          "text": "Contact Me"
+        },
+        {
+          "element": "div",
+          "style": "display: flex; flex-direction: column; max-width: 635px; width: 100%; gap: 24px;",
+          "children": [
+            {
+              "element": "ul",
+              "style": "margin: 0; padding: 0; list-style: none; gap: 24px; display: flex; flex-direction: column;",
+              "blueprint": {
+                "count": "3",
+                "element": "li",
+                "style": "display: flex; flex-direction: column; gap: 8px;",
+                "children": [
+                  {
+                    "element": "label",
+                    "attributes": {
+                      "for": "cwrapArray[name,email,message]"
+                    },
+                    "style": "color: rgba(51, 50, 61, 0.8); font-weight: bold; font-family: Public Sans, serif; font-size: 13px; line-height: 30px;",
+                    "text": "cwrapArray[Name,Email Address,Message]"
+                  },
+                  {
+                    "element": "cwrapArray[input,input,textarea]",
+                    "extend": [
+                      {
+                        "extension": ":focus",
+                        "style": "border: 1px solid #5FB4A2"
+                      }
+                    ],
+                    "style": "font-family: Public Sans, serif; font-size: 13px; line-height: 30px; width: 100%; margin:0; padding: 0; box-sizing: border-box; background-color: rgba(51, 50, 61, 0.1); none; resize: none; min-height: cwrapArray[48px,48px,98px]; outline: none; border: 1px solid transparent; padding-inline: 16px; padding-block: 9px;",
+                    "attributes": {
+                      "id": "cwrapArray[name,email,message]",
+                      "autocomplete": "cwrapArray[name,email,cwrapOmit]",
+                      "required": "",
+                      "pattern": "cwrapArray[cwrapOmit cwrapBreak ^[a-zA-Z0-9._%+\\-]+@[a-zA-Z0-9.\\-]+\\.[a-zA-Z]{2,}$ cwrapBreak cwrapOmit]",
+                      "placeholder": "cwrapArray[Jane Appleseed,email@example.com,How can I help?]"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "element": "button",
+              "text": "SEND MESSAGE",
+              "attributes": {
+                "class": "button2"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }

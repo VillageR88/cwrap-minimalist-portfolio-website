@@ -85,7 +85,7 @@
         {
             "name": "button2",
             "type": "class",
-            "style": "transition: 250ms; font-size: 12px; font-family: Public Sans, serif; cursor: pointer; text-decoration: none; letter-spacing: 2px; align-content: center; min-height: 48px; max-width: 202px; width: 100%; color: #33323D; border: 1px solid #33323D; text-align: center;"
+            "style": "transition: 250ms; background-color: unset; font-size: 12px; font-family: Public Sans, serif; cursor: pointer; text-decoration: none; letter-spacing: 2px; align-content: center; min-height: 48px; max-width: 202px; width: 100%; color: #33323D; border: 1px solid #33323D; text-align: center;"
         },
         {
             "name": "button2:hover",
@@ -96,6 +96,11 @@
             "name": "text1",
             "type": "class",
             "style": "color: #5FB4A2; font-weight: bold; font-family: Public Sans, serif; line-height: 30px; margin: 0;"
+        },
+        {
+            "name": "::placeholder",
+            "type": "pseud::",
+            "style": "color: rgba(51, 50, 61, 0.4);"
         }
     ],
     "const": {

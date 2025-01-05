@@ -146,34 +146,8 @@
                         ]
                     },
                     {
-                        "element": "ul",
-                        "style": "display: flex; height: fit-content; align-items: center; gap: 16px; margin: 0; padding: 0; list-style: none;",
-                        "blueprint": {
-                            "count": "3",
-                            "element": "li",
-                            "style": "display: flex; align-items: center;",
-                            "children": [
-                                {
-                                    "element": "a",
-                                    "style": "transition: 400ms;",
-                                    "extend": [
-                                        {
-                                            "extension": ":hover",
-                                            "style": "transform: translateX(0) scale(1.1); filter: drop-shadow(0 0 6px #5FB4A2);"
-                                        }
-                                    ],
-                                    "attributes": {
-                                        "href": "#"
-                                    },
-                                    "children": [
-                                        {
-                                            "element": "cwrap-template",
-                                            "text": "cwrapTemplate[cwrapArray[svgGithub,svgTwitter,svgLinkedIn]]"
-                                        }
-                                    ]
-                                }
-                            ]
-                        }
+                        "element": "cwrap-template",
+                        "text": "cwrapTemplate[ulSocial(iconFill=white,glowSize=6px)]"
                     }
                 ]
             }
@@ -251,7 +225,7 @@
     {
         "element": "svg",
         "name": "svgGithub",
-        "style": "fill: white;",
+        "style": "fill: cwrapProperty[iconFill=iconFill];",
         "attributes": {
             "xmlns": "http://www.w3.org/2000/svg",
             "width": "25",
@@ -269,7 +243,7 @@
     {
         "element": "svg",
         "name": "svgTwitter",
-        "style": "fill: white;",
+        "style": "fill: cwrapProperty[iconFill=iconFill];",
         "attributes": {
             "xmlns": "http://www.w3.org/2000/svg",
             "width": "24",
@@ -287,7 +261,7 @@
     {
         "element": "svg",
         "name": "svgLinkedIn",
-        "style": "fill: white;",
+        "style": "fill: cwrapProperty[iconFill=iconFill];",
         "attributes": {
             "xmlns": "http://www.w3.org/2000/svg",
             "width": "24",
@@ -375,5 +349,36 @@
                 ]
             }
         ]
+    },
+    {
+        "element": "ul",
+        "name": "ulSocial",
+        "style": "display: flex; height: fit-content; align-items: center; gap: 16px; margin: 0; padding: 0; list-style: none;",
+        "blueprint": {
+            "count": "3",
+            "element": "li",
+            "style": "display: flex; align-items: center;",
+            "children": [
+                {
+                    "element": "a",
+                    "style": "transition: 400ms;",
+                    "extend": [
+                        {
+                            "extension": ":hover",
+                            "style": "transform: translateX(0) scale(1.1); filter: drop-shadow(0 0 cwrapProperty[glowSize=glowSize] #5FB4A2);"
+                        }
+                    ],
+                    "attributes": {
+                        "href": "#"
+                    },
+                    "children": [
+                        {
+                            "element": "cwrap-template",
+                            "text": "cwrapTemplate[cwrapArray[svgGithub,svgTwitter,svgLinkedIn]]"
+                        }
+                    ]
+                }
+            ]
+        }
     }
 ]
