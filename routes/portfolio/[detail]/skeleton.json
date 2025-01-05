@@ -21,21 +21,59 @@
   "passover": [
     {
       "element": "main",
+      "mediaQueries": [
+        {
+          "query": "max-width: 1024px",
+          "style": "margin-block: 80px;"
+        }
+      ],
       "style": "max-width: 1110px; margin-inline: auto; margin-block: 94px 150px;",
       "children": [
         {
-          "element": "img",
-          "attributes": {
-            "src": "../../static/images/detail/desktop/image-cwrapRoutes[manage,bookmark,insure,fylo]-hero.jpg",
-            "srcset": "../../static/images/detail/desktop/image-cwrapRoutes[manage,bookmark,insure,fylo]-hero.jpg 1x, ../../static/images/detail/desktop/image-cwrapRoutes[manage,bookmark,insure,fylo]-hero@2x.jpg 2x"
-          }
+          "element": "picture",
+          "children": [
+            {
+              "element": "source",
+              "attributes": {
+                "media": "(max-width: 480px)",
+                "srcset": "../../static/images/detail/mobile/image-cwrapRoutes[manage,bookmark,insure,fylo]-hero.jpg 1x, ../../static/images/detail/mobile/image-cwrapRoutes[manage,bookmark,insure,fylo]-hero@2x.jpg 2x"
+              }
+            },
+            {
+              "element": "source",
+              "attributes": {
+                "media": "(max-width: 768px)",
+                "srcset": "../../static/images/detail/tablet/image-cwrapRoutes[manage,bookmark,insure,fylo]-hero.jpg 1x, ../../static/images/detail/tablet/image-cwrapRoutes[manage,bookmark,insure,fylo]-hero@2x.jpg 2x"
+              }
+            },
+            {
+              "element": "img",
+              "style": "width: 100%;",
+              "attributes": {
+                "src": "../../static/images/detail/desktop/image-cwrapRoutes[manage,bookmark,insure,fylo]-hero.jpg",
+                "srcset": "../../static/images/detail/desktop/image-cwrapRoutes[manage,bookmark,insure,fylo]-hero.jpg 1x, ../../static/images/detail/desktop/image-cwrapRoutes[manage,bookmark,insure,fylo]-hero@2x.jpg 2x"
+              }
+            }
+          ]
         },
         {
           "element": "div",
-          "style": "display: flex; margin-top: 115px; justify-content: space-between;",
+          "mediaQueries": [
+            {
+              "query": "max-width: 1024px",
+              "style": "flex-direction: column; margin-top: 40px;"
+            }
+          ],
+          "style": "display: flex; margin-top: 115px; justify-content: space-between; gap: 32px;",
           "children": [
             {
               "element": "div",
+              "mediaQueries": [
+                {
+                  "query": "max-width: 1024px",
+                  "style": "max-width: unset; padding-block: 32px;"
+                }
+              ],
               "style": "display: flex; flex-direction: column; border-block: 1px solid rgba(51, 50, 61, 0.15); max-width: 350px; height: fit-content; justify-content: center; padding-block: 48px;",
               "children": [
                 {
@@ -51,6 +89,16 @@
                     },
                     {
                       "element": "p",
+                      "mediaQueries": [
+                        {
+                          "query": "max-width: 1024px",
+                          "style": "position: absolute; max-width: 339px; right: 32px;"
+                        },
+                        {
+                          "query": "max-width: 768px",
+                          "style": "position: unset; max-width: unset; right: unset;"
+                        }
+                      ],
                       "style": "font-size: 15px;",
                       "attributes": {
                         "class": "description"
@@ -91,6 +139,12 @@
             },
             {
               "element": "div",
+              "mediaQueries": [
+                {
+                  "query": "max-width: 1024px",
+                  "style": "max-width: unset;"
+                }
+              ],
               "style": "display: flex; flex-direction: column; max-width: 635px; width: 100%; gap: 40px;",
               "children": [
                 {
@@ -144,11 +198,31 @@
                         "element": "li",
                         "children": [
                           {
-                            "element": "img",
-                            "attributes": {
-                              "src": "../../static/images/detail/desktop/image-cwrapRoutes[manage,bookmark,insure,fylo]-preview-cwrapArray[1,2].jpg",
-                              "srcset": "../../static/images/detail/desktop/image-cwrapRoutes[manage,bookmark,insure,fylo]-preview-cwrapArray[1,2].jpg 1x, ../../static/images/detail/desktop/image-cwrapRoutes[manage,bookmark,insure,fylo]-preview-cwrapArray[1,2]1@2x.jpg 2x"
-                            }
+                            "element": "picture",
+                            "children": [
+                              {
+                                "element": "source",
+                                "attributes": {
+                                  "media": "(max-width: 480px)",
+                                  "srcset": "../../static/images/detail/mobile/image-cwrapRoutes[manage,bookmark,insure,fylo]-preview-cwrapArray[1,2].jpg 1x, ../../static/images/detail/mobile/image-cwrapRoutes[manage,bookmark,insure,fylo]-preview-cwrapArray[1,2]@2x.jpg 2x"
+                                }
+                              },
+                              {
+                                "element": "source",
+                                "attributes": {
+                                  "media": "(max-width: 1024px)",
+                                  "srcset": "../../static/images/detail/tablet/image-cwrapRoutes[manage,bookmark,insure,fylo]-preview-cwrapArray[1,2].jpg 1x, ../../static/images/detail/tablet/image-cwrapRoutes[manage,bookmark,insure,fylo]-preview-cwrapArray[1,2]@2x.jpg 2x"
+                                }
+                              },
+                              {
+                                "element": "img",
+                                "style": "width: 100%;",
+                                "attributes": {
+                                  "src": "../../static/images/detail/desktop/image-cwrapRoutes[manage,bookmark,insure,fylo]-preview-cwrapArray[1,2].jpg",
+                                  "srcset": "../../static/images/detail/desktop/image-cwrapRoutes[manage,bookmark,insure,fylo]-preview-cwrapArray[1,2].jpg 1x, ../../static/images/detail/desktop/image-cwrapRoutes[manage,bookmark,insure,fylo]-preview-cwrapArray[1,2]@2x.jpg 2x"
+                                }
+                              }
+                            ]
                           }
                         ]
                       }
