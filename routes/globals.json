@@ -101,6 +101,16 @@
             "name": "::placeholder",
             "type": "pseud::",
             "style": "color: rgba(51, 50, 61, 0.4);"
+        },
+        {
+            "name": "label:has(input:checked) > #menuIcon",
+            "type": "element",
+            "style": "display: none;"
+        },
+        {
+            "name": "label:not(:has(input:checked)) > #closeIcon",
+            "type": "element",
+            "style": "display: none;"
         }
     ],
     "const": {

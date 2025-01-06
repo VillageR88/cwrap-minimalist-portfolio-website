@@ -11,6 +11,43 @@
             {
                 "element": "cwrap-template",
                 "text": "cwrapTemplate[navigationUl(navigationDisplay=none)]"
+            },
+            {
+                "element": "label",
+                "mediaQueries": [
+                    {
+                        "query": "max-width: 768px",
+                        "style": "display: unset;"
+                    }
+                ],
+                "style": "display: none;",
+                "attributes": {
+                    "for": "menuToggle"
+                },
+                "children": [
+                    {
+                        "element": "img",
+                        "attributes": {
+                            "src": "cwrapProperty[prefix=./]static/images/icons/hamburger.svg",
+                            "id": "menuIcon"
+                        }
+                    },
+                    {
+                        "element": "img",
+                        "attributes": {
+                            "src": "cwrapProperty[prefix=./]static/images/icons/close.svg",
+                            "id": "closeIcon"
+                        }
+                    },
+                    {
+                        "element": "input",
+                        "style": "position: absolute; opacity: 0;",
+                        "attributes": {
+                            "type": "checkbox",
+                            "id": "menuToggle"
+                        }
+                    }
+                ]
             }
         ]
     },
