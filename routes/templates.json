@@ -23,7 +23,7 @@
                         "children": [
                             {
                                 "element": "cwrap-template",
-                                "text": "cwrapTemplate[navigationUl(navigationDisplay=cwrapOmit)]"
+                                "text": "cwrapTemplate[navigationUl(color1=white,color2=white,color3=white,navigationDisplay=cwrapOmit)]"
                             }
                         ]
                     }
@@ -511,7 +511,8 @@
                         }
                     ],
                     "attributes": {
-                        "href": "#"
+                        "href": "#",
+                        "aria-label": "cwrapArray[GitHub,Twitter,LinkedIn] Social Media Link"
                     },
                     "children": [
                         {

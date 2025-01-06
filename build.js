@@ -16,21 +16,32 @@ const globalsJsonPath = path.join(__dirname, "routes", "globals.json");
 const activeParam = process?.argv?.slice(2);
 const isDevelopment = activeParam.includes("dev");
 
+const getNestedValue = (obj, path) => {
+  if (!path) return obj; // If no path is provided, return the root object
+  return path.split(".").reduce((acc, key) => acc?.[key], obj);
+};
+
 const replaceCwrapGlobals = (obj) => {
   if (typeof obj === "string") {
     return obj.replace(/cwrapGlobal\[(.*?)\]/g, (match, p1) => {
-      return constMap.get(p1) || match;
+      const [rootKey, ...nestedPath] = p1.split("."); // Split the key into root and nested parts
+      const rootValue = constMap.get(rootKey); // Get the root value from constMap
+      if (rootValue !== undefined) {
+        // Handle both simple and nested cases
+        return getNestedValue(rootValue, nestedPath.join(".")) || match;
+      }
+      return match; // Preserve the original if no match is found
     });
   }
   if (Array.isArray(obj)) {
-    return obj.map(replaceCwrapGlobals);
+    return obj.map(replaceCwrapGlobals); // Recursively process arrays
   }
   if (typeof obj === "object" && obj !== null) {
     for (const key in obj) {
-      obj[key] = replaceCwrapGlobals(obj[key]);
+      obj[key] = replaceCwrapGlobals(obj[key]); // Recursively process objects
     }
   }
-  return obj;
+  return obj; // Return other types unchanged
 };
 
 function clearDocumentByOmit(htmlString) {
@@ -43,7 +54,10 @@ function clearDocumentByOmit(htmlString) {
 
   // Iterate in reverse order and remove elements containing "cwrapOmit"
   for (let i = elements.length - 1; i >= 0; i--) {
-    if (elements[i].textContent.includes("cwrapOmit")) {
+    if (
+      elements[i].textContent.includes("cwrapOmit") ||
+      elements[i].hasAttribute("data-cwrap-omit")
+    ) {
       elements[i].parentNode.removeChild(elements[i]);
     }
   }
@@ -92,9 +106,27 @@ function createElementFromJson(
     jsonObjCopy.text = "cwrapOmit";
   }
 
+  let isFragment = false;
+  if (jsonObjCopy.element === "cwrap-fragment") isFragment = true;
+  if (isFragment) {
+    const fragment = document.createDocumentFragment();
+    for (const child of jsonObjCopy.children) {
+      const childElement = createElementFromJson(
+        child,
+        isInitialLoad,
+        blueprintElementCounter,
+        properties,
+        omit
+      );
+      if (childElement) fragment.appendChild(childElement);
+    }
+    return fragment;
+  }
+
   // Create the element
   const SVG_NAMESPACE = "http://www.w3.org/2000/svg";
   let element;
+
   if (
     jsonObjCopy.element === "svg" ||
     jsonObjCopy.element === "path" ||
@@ -132,6 +164,7 @@ function createElementFromJson(
 
   if (!abandonItem) {
     const originalText = selectedJsonObj.text || jsonObjCopy.text;
+
     element.cwrapText = originalText ?? "";
 
     if (
@@ -232,6 +265,10 @@ function createElementFromJson(
         }
       }
     } else {
+      // //This is newest addition to workaround JSDOM preventing from non semantic text inside img (for example)
+      if (jsonObjCopy?.text?.includes("cwrapOmit")) {
+        element?.setAttribute("data-cwrap-omit", "");
+      }
       element.textContent = originalText;
     }
 
@@ -264,12 +301,24 @@ function createElementFromJson(
     }
   }
 
-  if (isInitialLoad && !jsonObjCopy.blueprint) {
-    element.customTag = "cwrapPreloaded";
-  }
-
   if (jsonObjCopy.blueprint) {
-    const count = jsonObjCopy.blueprint.count;
+    let count = jsonObjCopy.blueprint.count;
+    if (count.includes("cwrapProperty")) {
+      const parts = count.split(/(cwrapProperty\[[^\]]+\])/);
+      for (let i = 1; i < parts.length; i++) {
+        if (parts[i].startsWith("cwrapProperty")) {
+          const propertyMatch = parts[i].match(
+            /cwrapProperty\[([^\]=]+)=([^\]]+)\]/
+          );
+          if (propertyMatch) {
+            const [property, defaultValue] = propertyMatch.slice(1);
+            const mapValue = properties?.get(property);
+            count = count.replace(parts[i], mapValue || defaultValue);
+          }
+        }
+      }
+    }
+    count = Number.parseInt(count, 10);
     for (let i = 0; i < count; i++) {
       let cookedJson = replacePlaceholdersCwrapArray(jsonObjCopy.blueprint, i);
       cookedJson = replacePlaceholdersCwrapIndex(cookedJson, i);
@@ -301,7 +350,7 @@ function createElementFromJson(
         spanElements[spanIndex].replaceWith(childElement);
         spanIndex++;
       } else if (!childElement.isOmitted) {
-        element.appendChild(childElement);
+        if (childElement) element.appendChild(childElement);
       }
     }
   }
@@ -335,7 +384,7 @@ function generateHtmlWithScript(jsonObj, jsonFilePath) {
     path.join(__dirname, "routes"),
     jsonFilePath
   );
-  const depth = relativePath.split(path.sep).length - 1;
+  const depth = relativePath.split(/[\\/]/).length - 1;
 
   // Check if cwrapGetParams is present in the JSON object
   if (JSON.stringify(jsonObj).includes("cwrapGetParams")) {
@@ -408,17 +457,11 @@ function copyFaviconToRoot(buildDir) {
   }
 }
 
-function generateHeadHtml(head, buildDir, depth) {
+function generateHeadHtml(head, jsonFile) {
   let headHtml = "<head>\n";
   const prefix = process.env.PAGE_URL;
   if (prefix) {
     if (!isDevelopment) console.log("Prefix: ", prefix);
-  } else {
-    // const packageJsonPath = path.join(__dirname, "package.json");
-    // const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, "utf8"));
-    // const routeName = packageJson.name;
-    // const route = buildDir.split(routeName).pop();
-    // headHtml += `<base href="${route.replaceAll("\\", "/")}/">\n`;
   }
 
   // Add title
@@ -457,7 +500,9 @@ function generateHeadHtml(head, buildDir, depth) {
   // Add additional tags like link
   headHtml += '    <link rel="stylesheet" href="styles.css">\n';
 
-  // Add globals.css with correct relative path
+  // Calculate the depth based on the JSON file's path relative to the routes folder
+  const relativePath = path.relative(path.join(__dirname, "routes"), jsonFile);
+  const depth = relativePath.split(/[\\/]/).length - 1;
   const globalsCssPath = `${"../".repeat(depth)}globals.css`;
   headHtml += `    <link rel="stylesheet" href="${globalsCssPath}">\n`;
 
@@ -569,10 +614,13 @@ function processStaticRouteDirectory(routeDir, buildDir, index) {
   const mergedHead = jsonObj.head
     ? { ...globalsHead, ...jsonObj.head }
     : globalsHead;
-  headContent = generateHeadHtml(mergedHead, buildDir);
+  headContent = generateHeadHtml(mergedHead, jsonFile);
 
   // Generate HTML content from JSON and append the script tag
-  const bodyContent = generateHtmlWithScript(jsonObj, jsonFile);
+  const bodyContent = generateHtmlWithScript(
+    replaceCwrapGlobals(jsonObj),
+    jsonFile
+  );
   let bodyHtml = bodyContent.outerHTML;
   bodyHtml = clearDocumentByOmit(bodyHtml);
   bodyHtml = clearDocumentByPlaceholder(bodyHtml);
@@ -686,8 +734,8 @@ ${headContent}
   mediaQueriesMap.clear();
   if (!isDevelopment) console.log(`Generated ${cssFile} successfully!`);
 
-  // Generate globals.css from globals.json if it exists
-  if (fs.existsSync(globalsJsonPath)) {
+  // Generate globals.css from globals.json if it exists and if processing the home route
+  if (routeDir === path.resolve("routes") && fs.existsSync(globalsJsonPath)) {
     const globalsJson = JSON.parse(fs.readFileSync(globalsJsonPath, "utf8"));
     let globalsCssContent = "";
 
@@ -797,13 +845,6 @@ function main() {
   const routesDir = path.resolve("routes");
   const buildDir = isDevelopment ? path.resolve("dist") : path.resolve("build");
   if (!isDevelopment) console.log("Starting build process...");
-
-  // Ensure the build directory is deleted before building
-  if (fs.existsSync(buildDir)) {
-    fs.removeSync(buildDir);
-    if (!isDevelopment)
-      console.log(`Deleted existing build directory ${buildDir}`);
-  }
 
   // Ensure the build directory exists
   if (!fs.existsSync(buildDir)) {
@@ -918,7 +959,12 @@ function replacePlaceholdersCwrapArray(jsonObj, index) {
     );
   }
 
-  return JSON.parse(replacedString);
+  try {
+    return JSON.parse(replacedString);
+  } catch (error) {
+    console.log(error);
+    return replacedString;
+  }
 }
 /**
  * Creates cssMap and mediaQueriesMap.
@@ -941,13 +987,28 @@ function generateCssSelector(
   omit = []
 ) {
   let selector = parentSelector;
-
   if (jsonObj.element) {
     if (omit.includes(jsonObj["omit-id"])) {
       return;
     }
     const element = jsonObj.element;
     if (!jsonObj.text) jsonObj.text = "";
+
+    // Handle cwrap-fragment elements
+    if (jsonObj.element === "cwrap-fragment") {
+      for (const child of jsonObj.children) {
+        generateCssSelector(
+          child,
+          parentSelector,
+          siblingCountMap,
+          blueprintCounter,
+          new Map(propsMap), // Pass a new copy of propsMap to each child
+          passover,
+          omit
+        );
+      }
+      return;
+    }
 
     // Handle cwrap-template elements
     if (element === "cwrap-template") {
@@ -960,7 +1021,7 @@ function generateCssSelector(
           const templateName =
             templateNameWithProps.match(/.+(?=\()/)?.[0] ||
             templateNameWithProps;
-          const templatePropsMap = propsMap;
+          const templatePropsMap = new Map(); // Create a new isolated propsMap for each template
           const propsMatch = templateNameWithProps.match(/\(([^)]+)\)/);
 
           if (propsMatch) {
@@ -977,9 +1038,10 @@ function generateCssSelector(
             const templateElementCopy = JSON.parse(
               JSON.stringify(templateElement)
             );
-            for (const [key, value] of templatePropsMap) {
-              if (propsMap.has(key)) {
-                templatePropsMap.set(key, propsMap.get(key));
+
+            for (const [key, value] of propsMap) {
+              if (!templatePropsMap.has(key)) {
+                templatePropsMap.set(key, value);
               }
             }
 
@@ -1006,7 +1068,7 @@ function generateCssSelector(
           parentSelector,
           siblingCountMap,
           blueprintCounter,
-          propsMap,
+          new Map(propsMap), // Pass a new copy of propsMap to each passover element
           passover,
           omit
         );
@@ -1014,24 +1076,7 @@ function generateCssSelector(
       return;
     }
 
-    // Initialize sibling counts for the parent selector
-    if (!siblingCountMap.has(parentSelector)) {
-      siblingCountMap.set(parentSelector, new Map());
-    }
-    const parentSiblingCount = siblingCountMap.get(parentSelector);
-
-    if (notNthEnumerableElements.includes(element)) {
-      selector += (parentSelector ? " > " : "") + element;
-    } else {
-      if (!parentSiblingCount.has(element)) {
-        parentSiblingCount.set(element, 0);
-      }
-      parentSiblingCount.set(element, parentSiblingCount.get(element) + 1);
-      selector += ` > ${element}:nth-of-type(${parentSiblingCount.get(
-        element
-      )})`;
-    }
-
+    // This is for siblingCountMap not + 1 if cwrapOmit present
     if (jsonObj.text) {
       if (jsonObj.text.includes("cwrapProperty")) {
         const parts = jsonObj.text.split(/(cwrapProperty\[[^\]]+\])/);
@@ -1052,6 +1097,23 @@ function generateCssSelector(
       }
     }
 
+    if (!siblingCountMap.has(parentSelector)) {
+      siblingCountMap.set(parentSelector, new Map());
+    }
+    const parentSiblingCount = siblingCountMap.get(parentSelector);
+
+    if (notNthEnumerableElements.includes(element)) {
+      selector += (parentSelector ? " > " : "") + element;
+    } else {
+      if (!parentSiblingCount.has(element)) {
+        parentSiblingCount.set(element, 0);
+      }
+      parentSiblingCount.set(element, parentSiblingCount.get(element) + 1);
+      selector += ` > ${element}:nth-of-type(${parentSiblingCount.get(
+        element
+      )})`;
+    }
+
     // Handle styles with cwrapProperty
     if (jsonObj.style) {
       if (jsonObj.style.includes("cwrapProperty")) {
@@ -1068,15 +1130,15 @@ function generateCssSelector(
                 parts[i],
                 mapValue || defaultValue
               );
-              const styleParts = jsonObj.style.split(";");
-              const filteredStyleParts = styleParts.filter(
-                (part) => !part.includes("cwrapOmit")
-              );
-              jsonObj.style = filteredStyleParts.join(";");
             }
           }
         }
       }
+      const styleParts = jsonObj.style.split(";");
+      const filteredStyleParts = styleParts.filter(
+        (part) => !part.includes("cwrapOmit")
+      );
+      jsonObj.style = filteredStyleParts.join(";");
 
       // Check if the final style contains cwrapOmit
       if (jsonObj.style.includes("cwrapOmit")) {
@@ -1112,15 +1174,15 @@ function generateCssSelector(
                   parts[i],
                   mapValue || defaultValue
                 );
-                const styleParts = extension.style.split(";");
-                const filteredStyleParts = styleParts.filter(
-                  (part) => !part.includes("cwrapOmit")
-                );
-                extension.style = filteredStyleParts.join(";");
               }
             }
           }
         }
+        const styleParts = extension.style.split(";");
+        const filteredStyleParts = styleParts.filter(
+          (part) => !part.includes("cwrapOmit")
+        );
+        extension.style = filteredStyleParts.join(";");
         const extendedSelector = `${selector}${extension.extension}`;
         cssMap.set(extendedSelector, extension.style);
       }
@@ -1148,16 +1210,15 @@ function generateCssSelector(
                   parts[i],
                   mapValue || defaultValue
                 );
-                const styleParts = finalStyle.split(";");
-                const filteredStyleParts = styleParts.filter(
-                  (part) => !part.includes("cwrapOmit")
-                );
-                finalStyle = filteredStyleParts.join(";");
               }
             }
           }
         }
-
+        const styleParts = finalStyle.split(";");
+        const filteredStyleParts = styleParts.filter(
+          (part) => !part.includes("cwrapOmit")
+        );
+        finalStyle = filteredStyleParts.join(";");
         mediaQueriesMap.get(mediaQuery.query).set(selector, finalStyle);
       }
     }
@@ -1170,7 +1231,7 @@ function generateCssSelector(
           selector,
           siblingCountMap,
           blueprintCounter,
-          propsMap,
+          new Map(propsMap), // Pass a new copy of propsMap to each child
           passover,
           omit
         );
@@ -1181,7 +1242,24 @@ function generateCssSelector(
     if (jsonObj.blueprint) {
       jsonObj.customTag = "cwrapBlueprintCSS";
       const blueprint = jsonObj.blueprint;
-      for (let i = 0; i < blueprint.count; i++) {
+      let count = blueprint.count;
+      if (count.includes("cwrapProperty")) {
+        const parts = count.split(/(cwrapProperty\[[^\]]+\])/);
+        for (let i = 1; i < parts.length; i++) {
+          if (parts[i].startsWith("cwrapProperty")) {
+            const propertyMatch = parts[i].match(
+              /cwrapProperty\[([^\]=]+)=([^\]]+)\]/
+            );
+            if (propertyMatch) {
+              const [property, defaultValue] = propertyMatch.slice(1);
+              const mapValue = propsMap.get(property);
+              count = count.replace(parts[i], mapValue || defaultValue);
+            }
+          }
+        }
+      }
+      count = Number.parseInt(count, 10);
+      for (let i = 0; i < count; i++) {
         const blueprintChild = JSON.parse(JSON.stringify(blueprint));
         blueprintChild.element = blueprint.element;
         blueprintChild.children = blueprint.children;
@@ -1194,7 +1272,7 @@ function generateCssSelector(
           selector,
           siblingCountMap,
           i + 1,
-          propsMap,
+          new Map(propsMap), // Pass a new copy of propsMap to each blueprint child
           passover,
           omit
         );
