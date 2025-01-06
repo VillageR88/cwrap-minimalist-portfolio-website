@@ -2,8 +2,33 @@
     {
         "element": "nav",
         "name": "navbar",
-        "style": "display: flex; align-items: center; justify-content: space-between; max-width: 1110px; width: 100%; margin-inline: auto; box-sizing: border-box;",
+        "style": "position: relative; display: flex; align-items: center; justify-content: space-between; max-width: 1110px; width: 100%; margin-inline: auto; box-sizing: border-box;",
         "children": [
+            {
+                "element": "div",
+                "mediaQueries": [
+                    {
+                        "query": "max-width: 768px",
+                        "style": "display: unset;"
+                    }
+                ],
+                "style": "position: absolute; width: 100%; top: 88px; height: fit-content; z-index: 1; display: flex; justify-items: end; display: none;",
+                "children": [
+                    {
+                        "element": "div",
+                        "attributes": {
+                            "id": "mobileNavbar"
+                        },
+                        "style": "max-width: 223px; width: 100%; min-height: 186px; background-color: #33323D; display: flex; align-items: center; justify-content: center; transition: 250ms;",
+                        "children": [
+                            {
+                                "element": "cwrap-template",
+                                "text": "cwrapTemplate[navigationUl(navigationDisplay=cwrapOmit)]"
+                            }
+                        ]
+                    }
+                ]
+            },
             {
                 "element": "cwrap-template",
                 "text": "cwrapTemplate[logo]"
@@ -290,7 +315,7 @@
         "mediaQueries": [
             {
                 "query": "max-width: 768px",
-                "style": "flex-direction: column; align-items: center; display: cwrapProperty[navigationDisplay=cwrapOmit];"
+                "style": "flex-direction: column; align-items: center; display: cwrapProperty[navigationDisplay=cwrapOmit]; gap: 32px;"
             }
         ],
         "style": "font-family: Public Sans, serif; font-size: 12px; letter-spacing: 2px; display: flex; margin: 0; padding: 0; list-style: none; gap: 42px;",
@@ -393,7 +418,7 @@
             },
             {
                 "element": "cwrap-template",
-                "text": "cwrapTemplate[footer]"
+                "text": "cwrapTemplate[footer(color1=white)]"
             },
             {
                 "element": "script",

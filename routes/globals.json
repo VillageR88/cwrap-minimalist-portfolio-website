@@ -103,12 +103,22 @@
             "style": "color: rgba(51, 50, 61, 0.4);"
         },
         {
-            "name": "label:has(input:checked) > #menuIcon",
+            "name": "label:has(#menuToggle:checked) > #menuIcon",
             "type": "element",
             "style": "display: none;"
         },
         {
-            "name": "label:not(:has(input:checked)) > #closeIcon",
+            "name": "body:not(:has(#menuToggle:checked)) #mobileNavbar",
+            "type": "element",
+            "style": "opacity: 0;"
+        },
+        {
+            "name": "body:has(#menuToggle:checked) #mobileNavbar",
+            "type": "element",
+            "style": "opacity: 1;"
+        },
+        {
+            "name": "label:not(:has(#menuToggle:checked)) > #closeIcon",
             "type": "element",
             "style": "display: none;"
         }
