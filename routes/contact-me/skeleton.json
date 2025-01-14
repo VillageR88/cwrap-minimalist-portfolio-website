@@ -1,4 +1,21 @@
 {
+  "head": {
+    "link": [
+      {
+        "rel": "shortcut icon",
+        "href": "../favicon.ico",
+        "type": "image/x-icon"
+      },
+      {
+        "rel": "prefetch",
+        "href": "../portfolio"
+      },
+      {
+        "rel": "prefetch",
+        "href": "../contact-me"
+      }
+    ]
+  },
   "element": "cwrap-template",
   "omit": [
     "omitFooterContact",
@@ -18,7 +35,7 @@
           "style": "margin-top: 40px;"
         }
       ],
-      "style": "display: flex; justify-content: space-between; max-width: 1110px; width: 100%; margin-inline: auto; margin-top: 94px; padding-block: 48px; border-block: 1px solid rgba(51, 50, 61, 0.15);",
+      "style": "border-block: 1px solid rgba(51, 50, 61, 0.15); display: flex; justify-content: space-between; margin-inline: auto; margin-top: 94px; max-width: 1110px; padding-block: 48px; width: 100%;",
       "children": [
         {
           "element": "h2",
@@ -35,7 +52,7 @@
               "style": "max-width: unset;"
             }
           ],
-          "style": "display: flex; flex-direction: column; max-width: 635px; gap: 24px; width: 100%;",
+          "style": "display: flex; flex-direction: column; gap: 24px; max-width: 635px; width: 100%;",
           "children": [
             {
               "element": "p",
@@ -67,7 +84,7 @@
           "style": "margin-block: 24px 80px;"
         }
       ],
-      "style": "display: flex; justify-content: space-between; max-width: 1110px; width: 100%; margin-inline: auto; margin-block: 47px 109px;",
+      "style": "display: flex; justify-content: space-between; margin-block: 47px 109px; margin-inline: auto; max-width: 1110px; width: 100%;",
       "children": [
         {
           "element": "h2",
@@ -84,11 +101,11 @@
               "style": "max-width: unset;"
             }
           ],
-          "style": "display: flex; flex-direction: column; max-width: 635px; width: 100%; gap: 24px;",
+          "style": "display: flex; flex-direction: column; gap: 24px; max-width: 635px; width: 100%;",
           "children": [
             {
               "element": "ul",
-              "style": "margin: 0; padding: 0; list-style: none; gap: 24px; display: flex; flex-direction: column;",
+              "style": "display: flex; flex-direction: column; gap: 24px; list-style: none; margin: 0; padding: 0;",
               "blueprint": {
                 "count": "3",
                 "element": "li",
@@ -99,7 +116,7 @@
                     "attributes": {
                       "for": "cwrapArray[name,email,message]"
                     },
-                    "style": "color: rgba(51, 50, 61, 0.8); font-weight: bold; font-family: Public Sans, serif; font-size: 13px; line-height: 30px;",
+                    "style": "color: rgba(51, 50, 61, 0.8); font-family: Public Sans, serif; font-size: 13px; font-weight: bold; line-height: 30px;",
                     "text": "cwrapArray[Name,Email Address,Message]"
                   },
                   {
@@ -107,10 +124,10 @@
                     "extend": [
                       {
                         "extension": ":focus",
-                        "style": "border: 1px solid #5FB4A2"
+                        "style": "border: 1px solid #5FB4A2;"
                       }
                     ],
-                    "style": "font-family: Public Sans, serif; font-size: 13px; line-height: 30px; width: 100%; margin:0; padding: 0; box-sizing: border-box; background-color: rgba(51, 50, 61, 0.1); none; resize: none; min-height: cwrapArray[48px,48px,98px]; outline: none; border: 1px solid transparent; padding-inline: 16px; padding-block: 9px;",
+                    "style": "background-color: rgba(51, 50, 61, 0.1); border: 1px solid transparent; box-sizing: border-box; font-family: Public Sans, serif; font-size: 13px; line-height: 30px; margin: 0; min-height: cwrapArray[48px,48px,98px]; outline: none; padding-block: 9px; padding-inline: 16px; resize: none; width: 100%;",
                     "attributes": {
                       "id": "cwrapArray[name,email,message]",
                       "autocomplete": "cwrapArray[name,email,cwrapOmit]",
@@ -128,11 +145,11 @@
               "extend": [
                 {
                   "extension": "::before",
-                  "style": "content: \"\"; position: absolute; left: 50%; height: 2px; background: #5FB4A2; width: 0%; bottom: 14px; z-index: 1; transition: width 300ms ease-in-out, 300ms ease-in-out; "
+                  "style": "background: #5FB4A2; bottom: 14px; content: \"\"; height: 2px; left: 50%; position: absolute; transition: width 300ms ease-in-out, 300ms ease-in-out; width: 0%; z-index: 1;"
                 },
                 {
                   "extension": ":hover::before",
-                  "style": "width: 100%; left: 0; transform: translateX(0) scale(0.6, 1.05); filter: drop-shadow(0 0 6px #5FB4A2);"
+                  "style": "filter: drop-shadow(0 0 6px #5FB4A2); left: 0; transform: translateX(0) scale(0.6, 1.05); width: 100%;"
                 }
               ],
               "style": "background-color: #203A4C; color: white; position: relative;",

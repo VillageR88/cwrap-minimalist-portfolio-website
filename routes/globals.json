@@ -1,135 +1,135 @@
 {
-    "head": {
-        "title": "New Candy Wrapper project",
-        "link": [
-            {
-                "rel": "shortcut icon",
-                "href": "https://villager88.github.io/cwrap-minimalist-portfolio-website/static/favicon/favicon.ico",
-                "type": "image/x-icon"
-            },
-            {
-                "rel": "stylesheet",
-                "href": "https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap",
-                "type": "text/css"
-            },
-            {
-                "rel": "stylesheet",
-                "href": "https://fonts.googleapis.com/css2?family=Ibarra+Real+Nova:ital,wght@0,400..700;1,400..700&display=swap",
-                "type": "text/css"
-            }
-        ],
-        "meta": [
-            {
-                "name": "viewport",
-                "content": "width=device-width, initial-scale=1.0"
-            },
-            {
-                "charset": "UTF-8"
-            },
-            {
-                "name": "description",
-                "content": "New Candy Wrapper project."
-            },
-            {
-                "name": "keywords",
-                "content": ""
-            }
-        ]
-    },
-    "classroom": [
-        {
-            "name": "chevron1",
-            "type": "class",
-            "style": "animation: flicker 1.5s infinite 1s;"
-        },
-        {
-            "name": "chevron2",
-            "type": "class",
-            "style": "animation: flicker 1.5s infinite 0.5s;"
-        },
-        {
-            "name": "chevron3",
-            "type": "class",
-            "style": "animation: flicker 1.5s infinite;"
-        },
-        {
-            "name": "@keyframes flicker",
-            "type": "custom",
-            "style": "0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; }"
-        },
-        {
-            "name": "@keyframes moveRightLeft",
-            "type": "custom",
-            "style": "0% { transform: translateX(0); } 50% { transform: translateX(100%); } 100% { transform: translateX(0); }"
-        },
-        {
-            "name": "@keyframes moveLeftRight",
-            "type": "custom",
-            "style": "0% { transform: translateX(0) rotate(180deg); } 50% { transform: translateX(-100%) rotate(180deg); } 100% { transform: translateX(0) rotate(180deg); }"
-        },
-        {
-            "name": "title",
-            "type": "class",
-            "style": "color: #33323D; margin:0; font-family: Ibarra Real Nova, serif; font-weight: bold; line-height: 42px; letter-spacing; font-size: 40px;"
-        },
-        {
-            "name": "titleNarrow",
-            "type": "class",
-            "style": "font-family: Ibarra Real Nova, serif; margin: 0; font-size: 32px; line-height: 42px; letter-spacing: -0.29px; font-weight: normal;"
-        },
-        {
-            "name": "description",
-            "type": "class",
-            "style": "color: rgba(51, 50, 61, 0.8); margin: 0; font-family: Public Sans, serif; font-size: 16px; line-height: 30px;"
-        },
-        {
-            "name": "button2",
-            "type": "class",
-            "style": "transition: 250ms; background-color: unset; font-size: 12px; font-family: Public Sans, serif; cursor: pointer; text-decoration: none; letter-spacing: 2px; align-content: center; min-height: 48px; max-width: 202px; width: 100%; color: #33323D; border: 1px solid #33323D; text-align: center;"
-        },
-        {
-            "name": "button2:hover",
-            "type": "class",
-            "style": "background-color: #33323D; color: white;"
-        },
-        {
-            "name": "text1",
-            "type": "class",
-            "style": "color: #5FB4A2; font-weight: bold; font-family: Public Sans, serif; line-height: 30px; margin: 0;"
-        },
-        {
-            "name": "::placeholder",
-            "type": "pseud::",
-            "style": "color: rgba(51, 50, 61, 0.4);"
-        },
-        {
-            "name": "label:has(#menuToggle:checked) > #menuIcon",
-            "type": "element",
-            "style": "display: none;"
-        },
-        {
-            "name": "body:not(:has(#menuToggle:checked)) #mobileNavbar",
-            "type": "element",
-            "style": "opacity: 0;"
-        },
-        {
-            "name": "body:has(#menuToggle:checked) #mobileNavbar",
-            "type": "element",
-            "style": "opacity: 1;"
-        },
-        {
-            "name": "label:not(:has(#menuToggle:checked)) > #closeIcon",
-            "type": "element",
-            "style": "display: none;"
-        }
+  "head": {
+    "title": "New Candy Wrapper project",
+    "link": [
+      {
+        "rel": "stylesheet",
+        "href": "https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap",
+        "type": "text/css"
+      },
+      {
+        "rel": "stylesheet",
+        "href": "https://fonts.googleapis.com/css2?family=Ibarra+Real+Nova:ital,wght@0,400..700;1,400..700&display=swap",
+        "type": "text/css"
+      }
     ],
-    "const": {
-        "manageDescription": "This project required me to build a fully responsive landing page to the designs provided. I used HTML5, along with CSS Grid and JavaScript for the areas that required interactivity, such as the testimonial slider.",
-        "bookmarkDescription": "This project required me to build a fully responsive landing page to the designs provided. I used HTML5, along with CSS Grid and JavaScript for the areas that required interactivity, such as the features section.",
-        "insureDescription": "This was a small project which mostly consisted of HTML and CSS. I built a fully-responsive landing page. The only JavaScript this project required was to enable the toggling of the mobile navigation.",
-        "fyloDescription": "This project was built in pure HTML and CSS. I had mobile and desktop designs to work to and built it so that it was fully-responsive. I took a mobile-first approach and used modern CSS like Flexbox and Grid for layout purposes.",
-        "description1": "Interaction Design / Front End Development",
-        "description2Short": "HTML / CSS",
-        "description2Long": "HTML / CSS / JS"
+    "meta": [
+      {
+        "name": "viewport",
+        "content": "width=device-width, initial-scale=1.0"
+      },
+      {
+        "charset": "UTF-8"
+      },
+      {
+        "name": "description",
+        "content": "New Candy Wrapper project."
+      },
+      {
+        "name": "keywords",
+        "content": ""
+      }
+    ]
+  },
+  "classroom": [
+    {
+      "name": "@view-transition",
+      "type": "custom",
+      "style": "navigation: auto;"
+    },
+    {
+      "name": "chevron1",
+      "type": "class",
+      "style": "animation: flicker 1.5s infinite 1s;"
+    },
+    {
+      "name": "chevron2",
+      "type": "class",
+      "style": "animation: flicker 1.5s infinite 0.5s;"
+    },
+    {
+      "name": "chevron3",
+      "type": "class",
+      "style": "animation: flicker 1.5s infinite;"
+    },
+    {
+      "name": "@keyframes flicker",
+      "type": "custom",
+      "style": "0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; }"
+    },
+    {
+      "name": "@keyframes moveRightLeft",
+      "type": "custom",
+      "style": "0% { transform: translateX(0); } 50% { transform: translateX(100%); } 100% { transform: translateX(0); }"
+    },
+    {
+      "name": "@keyframes moveLeftRight",
+      "type": "custom",
+      "style": "0% { transform: translateX(0) rotate(180deg); } 50% { transform: translateX(-100%) rotate(180deg); } 100% { transform: translateX(0) rotate(180deg); }"
+    },
+    {
+      "name": "title",
+      "type": "class",
+      "style": "color: #33323D; font-family: Ibarra Real Nova, serif; font-size: 40px; font-weight: bold; letter-spacing: -0.45; line-height: 42px; margin: 0;"
+    },
+    {
+      "name": "titleNarrow",
+      "type": "class",
+      "style": "font-family: Ibarra Real Nova, serif; font-size: 32px; font-weight: normal; letter-spacing: -0.29px; line-height: 42px; margin: 0;"
+    },
+    {
+      "name": "description",
+      "type": "class",
+      "style": "color: rgba(51, 50, 61, 0.8); font-family: Public Sans, serif; font-size: 16px; line-height: 30px; margin: 0;"
+    },
+    {
+      "name": "button2",
+      "type": "class",
+      "style": "align-content: center; background-color: unset; border: 1px solid #33323D; color: #33323D; cursor: pointer; font-family: Public Sans, serif; font-size: 12px; letter-spacing: 2px; max-width: 202px; min-height: 48px; text-align: center; text-decoration: none; transition: 250ms; width: 100%;"
+    },
+    {
+      "name": "button2:hover",
+      "type": "class",
+      "style": "background-color: #33323D; color: white;"
+    },
+    {
+      "name": "text1",
+      "type": "class",
+      "style": "color: #5FB4A2; font-family: Public Sans, serif; font-weight: bold; line-height: 30px; margin: 0;"
+    },
+    {
+      "name": "placeholder",
+      "type": "pseudo::",
+      "style": "color: rgba(51, 50, 61, 0.4);"
+    },
+    {
+      "name": "label:has(#menuToggle:checked) > #menuIcon",
+      "type": "element",
+      "style": "display: none;"
+    },
+    {
+      "name": "body:not(:has(#menuToggle:checked)) #mobileNavbar",
+      "type": "element",
+      "style": "opacity: 0;"
+    },
+    {
+      "name": "body:has(#menuToggle:checked) #mobileNavbar",
+      "type": "element",
+      "style": "opacity: 1;"
+    },
+    {
+      "name": "label:not(:has(#menuToggle:checked)) > #closeIcon",
+      "type": "element",
+      "style": "display: none;"
     }
+  ],
+  "const": {
+    "manageDescription": "This project required me to build a fully responsive landing page to the designs provided. I used HTML5, along with CSS Grid and JavaScript for the areas that required interactivity, such as the testimonial slider.",
+    "bookmarkDescription": "This project required me to build a fully responsive landing page to the designs provided. I used HTML5, along with CSS Grid and JavaScript for the areas that required interactivity, such as the features section.",
+    "insureDescription": "This was a small project which mostly consisted of HTML and CSS. I built a fully-responsive landing page. The only JavaScript this project required was to enable the toggling of the mobile navigation.",
+    "fyloDescription": "This project was built in pure HTML and CSS. I had mobile and desktop designs to work to and built it so that it was fully-responsive. I took a mobile-first approach and used modern CSS like Flexbox and Grid for layout purposes.",
+    "description1": "Interaction Design / Front End Development",
+    "description2Short": "HTML / CSS",
+    "description2Long": "HTML / CSS / JS"
+  }
 }

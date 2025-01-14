@@ -1,4 +1,37 @@
 {
+  "head": {
+    "link": [
+      {
+        "rel": "shortcut icon",
+        "href": "../favicon.ico",
+        "type": "image/x-icon"
+      },
+      {
+        "rel": "prefetch",
+        "href": "../portfolio"
+      },
+      {
+        "rel": "prefetch",
+        "href": "../portfolio/manage"
+      },
+      {
+        "rel": "prefetch",
+        "href": "../portfolio/bookmark"
+      },
+      {
+        "rel": "prefetch",
+        "href": "../portfolio/insure"
+      },
+      {
+        "rel": "prefetch",
+        "href": "../portfolio/fylo"
+      },
+      {
+        "rel": "prefetch",
+        "href": "../contact-me"
+      }
+    ]
+  },
   "element": "cwrap-template",
   "omit": [
     "omitScript"
@@ -17,17 +50,17 @@
           "style": "margin-block: 40px 80px;"
         }
       ],
-      "style": "max-width: 1110px; width: 100%; display: flex; flex-direction: column; margin-inline: auto; margin-block: 94px 150px;",
+      "style": "display: flex; flex-direction: column; margin-block: 94px 150px; margin-inline: auto; max-width: 1110px; width: 100%;",
       "children": [
         {
           "element": "ul",
           "extend": [
             {
               "extension": " > li:nth-of-type(even)",
-              "style": "flex-direction: row-reverse; align-self: end;"
+              "style": "align-self: end; flex-direction: row-reverse;"
             }
           ],
-          "style": "margin: 0; padding: 0; list-style: none; gap: 80px; display: flex; flex-direction: column;",
+          "style": "display: flex; flex-direction: column; gap: 80px; list-style: none; margin: 0; padding: 0;",
           "blueprint": {
             "count": "4",
             "element": "li",
@@ -38,17 +71,17 @@
               },
               {
                 "query": "max-width: 768px",
-                "style": "flex-direction: column; max-width: unset; gap: 32px;"
+                "style": "flex-direction: column; gap: 32px; max-width: unset;"
               }
             ],
-            "style": "display: flex; max-width: 1015px; width: 100%; justify-content: space-between; align-items: center; gap: 64px;",
+            "style": "align-items: center; display: flex; gap: 64px; justify-content: space-between; max-width: 1015px; width: 100%;",
             "children": [
               {
                 "element": "picture",
                 "mediaQueries": [
                   {
                     "query": "max-width: 768px",
-                    "style": "width: 100%; max-width: 400px;"
+                    "style": "max-width: 400px; width: 100%;"
                   }
                 ],
                 "children": [
@@ -68,7 +101,7 @@
                   },
                   {
                     "element": "img",
-                    "style": "width: 100%; display: flex;",
+                    "style": "display: flex; width: 100%;",
                     "attributes": {
                       "src": "../static/images/portfolio/desktop/image-portfolio-cwrapArray[manage,bookmark,insure,fylo].jpg",
                       "srcset": "../static/images/portfolio/desktop/image-portfolio-cwrapArray[manage,bookmark,insure,fylo].jpg 1x, ../static/images/portfolio/desktop/image-portfolio-cwrapArray[manage,bookmark,insure,fylo]@2x.jpg 2x"
@@ -81,10 +114,10 @@
                 "mediaQueries": [
                   {
                     "query": "max-width: 768px",
-                    "style": "flex-direction: column; max-width: unset; max-width: 500px; gap: 24px;"
+                    "style": "flex-direction: column; gap: 24px; max-width: 500px; max-width: unset;"
                   }
                 ],
-                "style": "max-width: 350px; justify-content: center; display: flex; flex-direction: column; gap: 24px; border-block: 1px solid rgba(51, 50, 61, 0.15); min-height: 100%; padding-block: 32px 50px;",
+                "style": "border-block: 1px solid rgba(51, 50, 61, 0.15); display: flex; flex-direction: column; gap: 24px; justify-content: center; max-width: 350px; min-height: 100%; padding-block: 32px 50px;",
                 "children": [
                   {
                     "element": "section",

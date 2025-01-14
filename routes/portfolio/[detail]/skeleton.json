@@ -1,4 +1,13 @@
 {
+  "head": {
+    "link": [
+      {
+        "rel": "shortcut icon",
+        "href": "../../favicon.ico",
+        "type": "image/x-icon"
+      }
+    ]
+  },
   "routes": [
     {
       "route": "manage"
@@ -27,7 +36,7 @@
           "style": "margin-block: 80px;"
         }
       ],
-      "style": "max-width: 1110px; margin-inline: auto; margin-block: 94px 150px;",
+      "style": "margin-block: 94px 150px; margin-inline: auto; max-width: 1110px;",
       "children": [
         {
           "element": "picture",
@@ -64,7 +73,7 @@
               "style": "flex-direction: column; margin-top: 40px;"
             }
           ],
-          "style": "display: flex; margin-top: 115px; justify-content: space-between; gap: 32px;",
+          "style": "display: flex; gap: 32px; justify-content: space-between; margin-top: 115px;",
           "children": [
             {
               "element": "div",
@@ -74,7 +83,7 @@
                   "style": "max-width: unset; padding-block: 32px;"
                 }
               ],
-              "style": "display: flex; flex-direction: column; border-block: 1px solid rgba(51, 50, 61, 0.15); max-width: 350px; height: fit-content; justify-content: center; padding-block: 48px;",
+              "style": "border-block: 1px solid rgba(51, 50, 61, 0.15); display: flex; flex-direction: column; height: fit-content; justify-content: center; max-width: 350px; padding-block: 48px;",
               "children": [
                 {
                   "element": "section",
@@ -92,11 +101,11 @@
                       "mediaQueries": [
                         {
                           "query": "max-width: 1024px",
-                          "style": "position: absolute; max-width: 339px; right: 32px;"
+                          "style": "max-width: 339px; position: absolute; right: 32px;"
                         },
                         {
                           "query": "max-width: 768px",
-                          "style": "position: unset; max-width: unset; right: unset;"
+                          "style": "max-width: unset; position: unset; right: unset;"
                         }
                       ],
                       "style": "font-size: 15px;",
@@ -145,7 +154,7 @@
                   "style": "max-width: unset;"
                 }
               ],
-              "style": "display: flex; flex-direction: column; max-width: 635px; width: 100%; gap: 40px;",
+              "style": "display: flex; flex-direction: column; gap: 40px; max-width: 635px; width: 100%;",
               "children": [
                 {
                   "element": "section",
@@ -168,7 +177,7 @@
                       "children": [
                         {
                           "element": "a",
-                          "style": "text-underline-offset: 2px; text-decoration-color: rgba(51, 50, 61, 0.8); text-decoration-thickness: 1.3px;",
+                          "style": "text-decoration-color: rgba(51, 50, 61, 0.8); text-decoration-thickness: 1.3px; text-underline-offset: 2px;",
                           "text": "Frontend Mentor",
                           "attributes": {
                             "href": "https://www.frontendmentor.io/home",
@@ -192,7 +201,7 @@
                     },
                     {
                       "element": "ul",
-                      "style": "margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 32px;",
+                      "style": "display: flex; flex-direction: column; gap: 32px; list-style: none; margin: 0; padding: 0;",
                       "blueprint": {
                         "count": "2",
                         "element": "li",
@@ -241,7 +250,7 @@
               "style": "height: 148px;"
             }
           ],
-          "style": "display: flex; align-items: center; justify-content: space-between; height: 132px; width: 100%; margin-top: 64px; border-block: 1px solid rgba(51, 50, 61, 0.15);",
+          "style": "align-items: center; border-block: 1px solid rgba(51, 50, 61, 0.15); display: flex; height: 132px; justify-content: space-between; margin-top: 64px; width: 100%;",
           "children": [
             {
               "element": "cwrap-template",
