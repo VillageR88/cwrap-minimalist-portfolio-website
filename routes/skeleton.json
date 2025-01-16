@@ -95,7 +95,7 @@
             },
             {
               "element": "cwrap-template",
-              "text": "cwrapTemplate[button1(button1Id=button-about-me)]"
+              "text": "cwrapTemplate[button1(button1Id=button-about-me,href=#profile-image)]"
             }
           ]
         }
@@ -123,6 +123,9 @@
           "children": [
             {
               "element": "picture",
+              "attributes": {
+                "id": "profile-image"
+              },
               "style": "display: flex; height: 100%; width: 100%;",
               "children": [
                 {

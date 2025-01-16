@@ -33,6 +33,11 @@
   },
   "classroom": [
     {
+      "name": "html",
+      "type": "element",
+      "style": "scroll-behavior: smooth;"
+    },
+    {
       "name": "@view-transition",
       "type": "custom",
       "style": "navigation: auto;"

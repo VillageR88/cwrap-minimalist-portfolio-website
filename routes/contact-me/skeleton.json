@@ -17,11 +17,7 @@
     ]
   },
   "element": "cwrap-template",
-  "omit": [
-    "omitFooterContact",
-    "omitScript"
-  ],
-  "text": "cwrapTemplate[bodyUniversal(color3=#5FB4A2,prefix=../)]",
+  "text": "cwrapTemplate[bodyUniversal(color3=#5FB4A2,prefix=../,omitFooterContact=cwrapOmit)]",
   "passover": [
     {
       "element": "main",

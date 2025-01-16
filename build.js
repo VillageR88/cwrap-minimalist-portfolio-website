@@ -109,6 +109,25 @@ function createElementFromJson(
 
   let isFragment = false;
   if (jsonObjCopy.element === "cwrap-fragment") isFragment = true;
+
+  if (jsonObjCopy.element.includes("cwrapProperty")) {
+    const parts = jsonObjCopy.element.split(/(cwrapProperty\[[^\]]+\])/g);
+    let finalElement = "";
+
+    for (const part of parts) {
+      if (part.startsWith("cwrapProperty")) {
+        const propertyMatch = part.match(/cwrapProperty\[([^\]=]+)=([^\]]+)\]/);
+        if (propertyMatch) {
+          const [property, defaultValue] = propertyMatch.slice(1);
+          const mapValue = properties?.get(property);
+          finalElement += mapValue || defaultValue;
+        }
+      } else {
+        finalElement += part;
+      }
+    }
+    jsonObjCopy.element = finalElement;
+  }
   if (isFragment) {
     const fragment = document.createDocumentFragment();
     for (const child of jsonObjCopy.children) {
@@ -803,13 +822,26 @@ ${headContent}
         }
       }
     }
+    cssMap.forEach((value, key) => {
+      if (value.trim()) {
+        globalsCssContent += `${key} {${value}}\n`;
+      }
+    });
 
-    // Add media queries to globals CSS content
-    const reversedMediaQueriesMap = new Map(
-      [...mediaQueriesMap.entries()].reverse()
-    );
+    // Add media queries to globals CSS content, sorted by max-width from biggest to lowest
+    const sortedMediaQueries = [...mediaQueriesMap.entries()].sort((a, b) => {
+      const maxWidthA = Number.parseInt(
+        a[0].match(/max-width:\s*(\d+)px/)[1],
+        10
+      );
+      const maxWidthB = Number.parseInt(
+        b[0].match(/max-width:\s*(\d+)px/)[1],
+        10
+      );
+      return maxWidthB - maxWidthA;
+    });
 
-    for (const [query, elementsMap] of reversedMediaQueriesMap) {
+    for (const [query, elementsMap] of sortedMediaQueries) {
       globalsCssContent += `@media (${query}) {\n`;
       elementsMap.forEach((style, selector) => {
         if (style.trim()) {
@@ -866,10 +898,44 @@ function main() {
     if (!isDevelopment) console.log(`Created build directory ${buildDir}`);
   }
 
-  // Copy the static folder to the build directory if it exists
+  // Copy the static folder to the build directory if it exists, omitting the "typescript" folder
   const staticDir = path.join("static");
   if (fs.existsSync(staticDir)) {
-    copyDirectory(staticDir, path.join(buildDir, "static"));
+    const copyDirectoryOmittingTypescript = (source, destination) => {
+      if (!fs.existsSync(destination)) {
+        mkdirp.sync(destination);
+        if (!isDevelopment) console.log(`Created directory ${destination}`);
+      }
+
+      fs.readdir(source, (err, files) => {
+        if (err) {
+          console.error(`Error: Could not open directory ${source}`, err);
+          return;
+        }
+
+        for (const file of files) {
+          if (file === "typescript") continue; // Omit the "typescript" folder
+
+          const sourcePath = path.join(source, file);
+          const destinationPath = path.join(destination, file);
+
+          fs.stat(sourcePath, (err, stats) => {
+            if (err) {
+              console.error(`Error: Could not stat ${sourcePath}`, err);
+              return;
+            }
+
+            if (stats.isDirectory()) {
+              copyDirectoryOmittingTypescript(sourcePath, destinationPath);
+            } else {
+              copyFile(sourcePath, destinationPath);
+            }
+          });
+        }
+      });
+    };
+
+    copyDirectoryOmittingTypescript(staticDir, path.join(buildDir, "static"));
   } else {
     console.warn(`Warning: Static directory ${staticDir} does not exist.`);
   }
@@ -1008,7 +1074,28 @@ function generateCssSelector(
     if (omit.includes(jsonObj["omit-id"])) {
       return;
     }
-    const element = jsonObj.element;
+    let element = jsonObj.element;
+
+    if (jsonObj.element.includes("cwrapProperty")) {
+      const parts = jsonObj.element.split(/(cwrapProperty\[[^\]]+\])/g);
+      let finalElement = "";
+
+      for (const part of parts) {
+        if (part.startsWith("cwrapProperty")) {
+          const propertyMatch = part.match(
+            /cwrapProperty\[([^\]=]+)=([^\]]+)\]/
+          );
+          if (propertyMatch) {
+            const [property, defaultValue] = propertyMatch.slice(1);
+            const mapValue = propsMap?.get(property);
+            finalElement += mapValue || defaultValue;
+          }
+        } else {
+          finalElement += part;
+        }
+      }
+      element = finalElement;
+    }
     if (!jsonObj.text) jsonObj.text = "";
 
     // Handle cwrap-fragment elements
@@ -1219,8 +1306,8 @@ function generateCssSelector(
         }
 
         let finalStyle = mediaQuery.style;
-        if (mediaQuery.style.includes("cwrapProperty")) {
-          const parts = mediaQuery.style.split(/(cwrapProperty\[[^\]]+\])/);
+        if (finalStyle?.includes("cwrapProperty")) {
+          const parts = finalStyle.split(/(cwrapProperty\[[^\]]+\])/);
           for (let i = 1; i < parts.length; i++) {
             if (parts[i].startsWith("cwrapProperty")) {
               const propertyMatch = parts[i].match(
@@ -1237,12 +1324,48 @@ function generateCssSelector(
             }
           }
         }
-        const styleParts = finalStyle.split(";");
-        const filteredStyleParts = styleParts.filter(
-          (part) => !part.includes("cwrapOmit")
-        );
-        finalStyle = filteredStyleParts.join(";");
-        mediaQueriesMap.get(mediaQuery.query).set(selector, finalStyle);
+        if (finalStyle) {
+          const styleParts = finalStyle.split(";");
+          const filteredStyleParts = styleParts.filter(
+            (part) => !part.includes("cwrapOmit")
+          );
+          finalStyle = filteredStyleParts.join(";");
+          mediaQueriesMap.get(mediaQuery.query).set(selector, finalStyle);
+        }
+
+        // Handle media query extensions
+        if (mediaQuery.extend) {
+          for (const extension of mediaQuery.extend) {
+            let extendedStyle = extension.style;
+            if (extendedStyle.includes("cwrapProperty")) {
+              const parts = extendedStyle.split(/(cwrapProperty\[[^\]]+\])/);
+              for (let i = 1; i < parts.length; i++) {
+                if (parts[i].startsWith("cwrapProperty")) {
+                  const propertyMatch = parts[i].match(
+                    /cwrapProperty\[([^\]=]+)=([^\]]+)\]/
+                  );
+                  if (propertyMatch) {
+                    const [property, defaultValue] = propertyMatch.slice(1);
+                    const mapValue = propsMap.get(property);
+                    extendedStyle = extendedStyle.replace(
+                      parts[i],
+                      mapValue || defaultValue
+                    );
+                  }
+                }
+              }
+            }
+            const styleParts = extendedStyle.split(";");
+            const filteredStyleParts = styleParts.filter(
+              (part) => !part.includes("cwrapOmit")
+            );
+            extendedStyle = filteredStyleParts.join(";");
+            const extendedSelector = `${selector}${extension.extension}`;
+            mediaQueriesMap
+              .get(mediaQuery.query)
+              .set(extendedSelector, extendedStyle);
+          }
+        }
       }
     }
 

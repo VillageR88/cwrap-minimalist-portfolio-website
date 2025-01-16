@@ -77,11 +77,12 @@
         ]
     },
     {
-        "element": "button",
+        "element": "a",
         "name": "button1",
         "attributes": {
             "id": "cwrapProperty[button1Id=cwrapPlaceholder]",
-            "class": "button1"
+            "class": "button1",
+            "href": "cwrapProperty[href=cwrapOmit]"
         },
         "extend": [
             {
@@ -93,7 +94,7 @@
                 "style": "stroke: white;"
             }
         ],
-        "style": "transition: 250ms; cursor: pointer; padding: 0; border: none; align-items: center; display: flex; max-width: 200px; background-color: #203A4C; color: white; min-height: 48px;",
+        "style": "transition: 250ms; text-decoration: none; cursor: pointer; padding: 0; border: none; align-items: center; display: flex; max-width: 200px; background-color: #203A4C; color: white; min-height: 48px;",
         "children": [
             {
                 "element": "div",
@@ -162,8 +163,7 @@
         "style": "width: calc(100% + 32px * 2); display: flex; flex-direction: column; margin-top: auto; gap: 150px; align-items: center;",
         "children": [
             {
-                "element": "div",
-                "omit-id": "omitFooterContact",
+                "element": "cwrapProperty[omitFooterContact=div]",
                 "mediaQueries": [
                     {
                         "query": "max-width: 768px",
@@ -419,14 +419,6 @@
             {
                 "element": "cwrap-template",
                 "text": "cwrapTemplate[footer(color1=white)]"
-            },
-            {
-                "element": "script",
-                "omit-id": "omitScript",
-                "attributes": {
-                    "src": "cwrapProperty[prefix=./]static/scripts/home.js",
-                    "type": "module"
-                }
             }
         ]
     },
